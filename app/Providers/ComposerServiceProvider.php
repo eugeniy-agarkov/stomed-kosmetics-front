@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Http\ViewComposers\ClinicComposer;
 use App\Http\ViewComposers\DirectionCategoryComposer;
+use App\Http\ViewComposers\SeoComposer;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -26,8 +27,9 @@ class ComposerServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        view()->composer('layouts.header', ClinicComposer::class);
-        view()->composer(['layouts.header', 'layouts.footer'], DirectionCategoryComposer::class);
+        view()->composer('*', SeoComposer::class);
+        view()->composer(['layouts.header', 'partials.contacts', 'partials.contacts-script'], ClinicComposer::class);
+        view()->composer(['layouts.header', 'layouts.footer', 'home.index'], DirectionCategoryComposer::class);
 
     }
 }

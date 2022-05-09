@@ -9,6 +9,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="canonical" href="{{ $seo->canonical ? $seo->canonical : url()->current() }}">
+    <meta name="description" content="{{ $seo->meta_description }}">
+    <meta name="keywords" content="{{ $seo->meta_keyword }}">
+    @if( $seo->robots == 0 )
+        <meta name="robots" content="noindex" />
+    @endif
+    @yield('meta')
+
     <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
 
     <!-- common css -->
@@ -41,6 +49,7 @@
     <!-- END CONTENT-->
 
     @include('modal.online-booking')
+    @include('modal.submit-application')
 
     <!-- base js -->
     <script src="{{ asset('build/assets/js/src/jquery/jquery.js') }}"></script>

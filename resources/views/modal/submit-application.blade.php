@@ -1,18 +1,18 @@
-<!-- Popup: Online запись -->
-<div id="modalOnlineBooking" class="popup">
+<!-- Popup: Оставить заявку -->
+<div id="modalSubmitApplication" class="popup">
 
     <!-- Header -->
     <div class="popup__header">
 
         <!-- title -->
         <h2 class="popup__header-title">
-            {{ __( 'Онлайн запись' ) }}
+            {{ __( 'Оставить заявку' ) }}
         </h2>
         <!-- end title -->
 
         <!-- excerpt -->
         <div class="popup__header-excerpt">
-            {{ __( 'Выберите удобную дату и время приема. Наш менеджер с радостью свяжеться с вами и проконсультирует!' ) }}
+            {{ __( 'Наш менеджер с радостью свяжеться с вами и проконсультирует!' ) }}
         </div>
         <!-- end excerpt -->
 
@@ -24,7 +24,6 @@
 
         <!-- Form -->
         <form action="" method="post" class="row">
-            @csrf
 
             <!-- col -->
             <div class="col-sm-12 form-group">
@@ -52,36 +51,10 @@
             <!-- end col -->
 
             <!-- col -->
-            <div class="col-sm-12 form-group">
-
-                <input
-                    type="text"
-                    name="date"
-                    placeholder="{{ __( 'Дата приема' ) }}"
-                    class="date"
-                >
-
-            </div>
-            <!-- end col -->
-
-            <!-- col -->
-            <div class="col-sm-12 form-group">
-
-                <input
-                    type="text"
-                    name="time"
-                    placeholder="{{ __( 'Время приема' ) }}"
-                    class="time"
-                >
-
-            </div>
-            <!-- end col -->
-
-            <!-- col -->
             <div class="col-sm-12">
 
                 <button type="submit">
-                    {{ __( 'Записаться на прием' ) }}
+                    {{ __( 'Оставить заявку' ) }}
                 </button>
 
             </div>

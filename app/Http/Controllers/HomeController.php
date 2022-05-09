@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\News\Blog;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,7 +16,7 @@ class HomeController extends Controller
     {
 
         return view('home.index', [
-
+            'news' => Blog::whereLast()->get()
         ]);
 
     }

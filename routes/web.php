@@ -33,6 +33,7 @@ Route::group(
      * News
      */
     Route::get('/news', 'News\BlogController@index')->name('news');
+    Route::get('/news/{blog}', 'News\BlogController@show')->name('news.detail');
 
     /**
      * Doctors
@@ -43,6 +44,7 @@ Route::group(
      * Contacts
      */
     Route::get('/contacts', 'Contact\ContactController@index')->name('contact');
+    Route::get('/contacts/{clinic}', 'Contact\ContactController@index')->name('contact.clinic');
 
     /**
      * Reviews
