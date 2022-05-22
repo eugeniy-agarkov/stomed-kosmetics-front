@@ -39,6 +39,7 @@ Route::group(
      * Doctors
      */
     Route::get('/doctors', 'Doctor\DoctorController@index')->name('doctor');
+    Route::get('/doctor/{doctor}', 'Doctor\DoctorController@show')->name('doctor.show');
 
     /**
      * Contacts
@@ -56,6 +57,11 @@ Route::group(
      */
     Route::get('/directions', 'Direction\DirectionController@index')->name('direction');
     Route::get('/directions/{direction}', 'Direction\DirectionCategoryController@index')->name('direction.category');
+
+    /**
+     * Forms
+     */
+    Route::post('/form/appointment', 'Form\AppointmentController@store')->name('form.appointment');
 
 
 });

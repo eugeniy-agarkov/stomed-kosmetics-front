@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Form;
 
-use App\Models\Doctor\Doctor;
-use App\Models\News\Blog;
-use App\Models\Reviews\Review;
+use App\Http\Controllers\Controller;
+use App\Http\Handlers\Form\StoreAppointmentHandler;
+use App\Http\Requests\Form\AppointmentRequest;
+use App\Models\Form;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AppointmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +18,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        return view('home.index', [
-            'news' => Blog::whereLast()->get(),
-            'doctorsIsTop' => Doctor::whereIsTop(4)->get(),
-            'reviewsLast' => Review::whereLast(5)->get(),
-        ]);
+        //
 
     }
 
@@ -41,18 +38,33 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AppointmentRequest $request, StoreAppointmentHandler $handler)
     {
-        //
+
+        if ($form = $handler->process($request))
+        {
+
+            return response()->json([
+                'status' => 'success',
+                'message' => __( 'Ваша заявка успешно отправлена' ),
+            ], 200);
+
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => __( 'Не удалось отправить сообщение.' )
+        ], 400);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Form $form)
     {
         //
     }
@@ -60,10 +72,10 @@ class HomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Form $form)
     {
         //
     }
@@ -72,10 +84,10 @@ class HomeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Form $form)
     {
         //
     }
@@ -83,10 +95,10 @@ class HomeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Form $form)
     {
         //
     }
