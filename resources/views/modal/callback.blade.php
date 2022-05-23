@@ -1,18 +1,18 @@
-<!-- Popup: Online запись -->
-<div id="modalOnlineBooking" class="popup">
+<!-- Popup: Обратный звонок -->
+<div id="modalCallback" class="popup">
 
     <!-- Header -->
     <div class="popup__header">
 
         <!-- title -->
         <h2 class="popup__header-title">
-            {{ __( 'Онлайн запись' ) }}
+            {{ __( 'Обратный звонок' ) }}
         </h2>
         <!-- end title -->
 
         <!-- excerpt -->
         <div class="popup__header-excerpt">
-            {{ __( 'Выберите удобную дату и время приема. Наш менеджер с радостью свяжеться с вами и проконсультирует!' ) }}
+            {{ __( 'Наш менеджер с радостью вам перезвонит!' ) }}
         </div>
         <!-- end excerpt -->
 
@@ -23,13 +23,19 @@
     <div class="popup__content">
 
         <!-- Form -->
-        <form action="{{ route('form.appointment') }}" method="post" class="row ajaxForm">
+        <form action="{{ route('form.callback') }}" method="post" class="row ajaxForm">
             @csrf
 
             <input
                 type="hidden"
                 name="form"
-                value="{{ \App\Enums\FormEnum::APPOINTMENTS }}"
+                value="{{ \App\Enums\FormEnum::FEEDBACK }}"
+            >
+
+            <input
+                type="hidden"
+                name="content"
+                value="{{ __( 'Обратный звонок' ) }}"
             >
 
             <!-- col -->
@@ -58,36 +64,10 @@
             <!-- end col -->
 
             <!-- col -->
-            <div class="col-sm-12 form-group">
-
-                <input
-                    type="text"
-                    name="date"
-                    placeholder="{{ __( 'Дата приема' ) }}"
-                    class="date"
-                >
-
-            </div>
-            <!-- end col -->
-
-            <!-- col -->
-            <div class="col-sm-12 form-group">
-
-                <input
-                    type="text"
-                    name="time"
-                    placeholder="{{ __( 'Время приема' ) }}"
-                    class="time"
-                >
-
-            </div>
-            <!-- end col -->
-
-            <!-- col -->
             <div class="col-sm-12">
 
                 <button type="submit">
-                    {{ __( 'Записаться на прием' ) }}
+                    {{ __( 'Оставить заявку' ) }}
                 </button>
 
             </div>
@@ -100,4 +80,4 @@
     <!-- End Content -->
 
 </div>
-<!-- End Popup -->
+<!-- End Popup: Обратный звонок -->

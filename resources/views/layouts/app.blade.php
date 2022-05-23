@@ -9,12 +9,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="canonical" href="{{ $seo->canonical ? $seo->canonical : url()->current() }}">
-    <meta name="description" content="{{ $seo->meta_description }}">
-    <meta name="keywords" content="{{ $seo->meta_keyword }}">
-    @if( $seo->robots == 0 )
-        <meta name="robots" content="noindex" />
-    @endif
+    <link rel="canonical" href="{{ isset($seo->canonical) ? $seo->canonical : url()->current() }}">
+    <meta name="description" content="{{ isset($seo->meta_description) ?? $seo->meta_description }}">
+    <meta name="keywords" content="{{ isset($seo->meta_keyword) ?? $seo->meta_keyword }}">
+    @isset( $seo->robots )
+        @if( $seo->robots == 0 )
+            <meta name="robots" content="noindex" />
+        @endif
+    @endisset
     @yield('meta')
 
     <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">
@@ -50,10 +52,15 @@
 
     @include('modal.online-booking')
     @include('modal.submit-application')
+    @include('modal.review-add')
+    @include('modal.callback')
+
+    @include('modal.message.online-booking')
 
     <!-- base js -->
     <script src="{{ asset('build/assets/js/src/jquery/jquery.js') }}"></script>
     <script src="{{ asset('build/assets/js/bundle.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <!-- end base js -->
 
     @stack('custom-scripts')

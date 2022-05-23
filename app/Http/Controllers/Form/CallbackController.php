@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Contact;
+namespace App\Http\Controllers\Form;
 
 use App\Http\Controllers\Controller;
-use App\Models\Clinic\Clinic;
+use App\Http\Handlers\Form\StoreCallbackHandler;
+use App\Http\Requests\Form\CallbackRequest;
+use App\Models\Form;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class CallbackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +18,7 @@ class ContactController extends Controller
     public function index()
     {
 
-        return view('contact.index', [
-
-        ]);
+        //
 
     }
 
@@ -38,35 +38,44 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CallbackRequest $request, StoreCallbackHandler $handler)
     {
-        //
+
+        if ($form = $handler->process($request))
+        {
+
+            return response()->json([
+                'status' => 'success',
+                'message' => __( 'Ваша заявка успешно отправлена' ),
+            ], 200);
+
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => __( 'Не удалось отправить сообщение.' )
+        ], 400);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function show(Clinic $clinic)
+    public function show(Form $form)
     {
-
-        return view('contact.index', [
-            'clinic' => $clinic,
-            'faqs' => $clinic->faq,
-            'galleries' => $clinic->images
-        ]);
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Form $form)
     {
         //
     }
@@ -75,10 +84,10 @@ class ContactController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Form $form)
     {
         //
     }
@@ -86,10 +95,10 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Form $form)
     {
         //
     }

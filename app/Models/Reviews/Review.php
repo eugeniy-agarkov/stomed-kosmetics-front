@@ -23,6 +23,18 @@ class Review extends Model
     protected $dates = ['published_at'];
 
     /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'clinic_id',
+        'doctor_id',
+        'fio',
+        'phone',
+        'content',
+        'type',
+    ];
+
+    /**
      * @param $query
      * @return ReviewQuery
      */

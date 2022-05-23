@@ -17,10 +17,7 @@ class FormObserver
     public function creating(Form $form)
     {
 
-        if( $form->type == FormEnum::APPOINTMENTS )
-        {
-            $form->content = $form->date . ' в ' . $form->time;
-        }
+        //
 
     }
 
@@ -33,7 +30,12 @@ class FormObserver
     public function created(Form $form)
     {
 
-
+        if( $form->form == FormEnum::APPOINTMENTS )
+        {
+            $dateTime = (new \Carbon\Carbon(request()->input('time')))->format('H:i');
+            $form->content = 'Дата записи: ' . request()->input('date') . ' в ' . $dateTime;
+            $form->save();
+        }
 
     }
 

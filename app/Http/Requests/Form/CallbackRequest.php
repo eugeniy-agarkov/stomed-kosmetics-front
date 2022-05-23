@@ -3,7 +3,7 @@ namespace App\Http\Requests\Form;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AppointmentRequest extends FormRequest
+class CallbackRequest extends FormRequest
 {
 
     /**
@@ -14,8 +14,6 @@ class AppointmentRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'phone' => 'required|max:255',
-            'date' => 'required|max:255',
-            'time' => 'required|max:255',
         ];
     }
 
@@ -30,8 +28,6 @@ class AppointmentRequest extends FormRequest
         return [
             'name.required' => 'Заполните поле Имя',
             'phone.required' => 'Укажите номер телефона',
-            'date.required' => 'Выберите дату',
-            'time.required' => 'Выберите время',
         ];
 
     }

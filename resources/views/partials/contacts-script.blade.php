@@ -13,18 +13,35 @@
                     searchControlProvider: 'yandex#search'
                 });
 
-            @foreach( $clinics as $clinic )
-                var Placemark_{{ $clinic->id }} = new ymaps.Placemark([{{ $clinic->detail->lat }},{{ $clinic->detail->lng }}], {
-                hintContent: '{{ $clinic->detail->address }}',
-                balloonContent: '{{ $clinic->detail->address }}'
+            @if( request()->routeIs('contact.clinic'))
+
+                var Placemark_{{ app('request')->clinic->id }} = new ymaps.Placemark([{{ app('request')->clinic->detail->lat }},{{ app('request')->clinic->detail->lng }}], {
+                    hintContent: '{{ app('request')->clinic->detail->address }}',
+                    balloonContent: '{{ app('request')->clinic->detail->address }}'
                 }, {
                     iconLayout: 'default#image',
                     iconImageHref: '{{ asset('build/assets/images/yandex-pin.png') }}',
                     iconImageSize: [40, 48],
                     iconImageOffset: [-20, -24]
                 });
-                myMap.geoObjects.add(Placemark_{{ $clinic->id }});
-            @endforeach
+                myMap.geoObjects.add(Placemark_{{ app('request')->clinic->id }});
+
+            @else
+
+                @foreach( $clinics as $clinic )
+                    var Placemark_{{ $clinic->id }} = new ymaps.Placemark([{{ $clinic->detail->lat }},{{ $clinic->detail->lng }}], {
+                    hintContent: '{{ $clinic->detail->address }}',
+                    balloonContent: '{{ $clinic->detail->address }}'
+                    }, {
+                        iconLayout: 'default#image',
+                        iconImageHref: '{{ asset('build/assets/images/yandex-pin.png') }}',
+                        iconImageSize: [40, 48],
+                        iconImageOffset: [-20, -24]
+                    });
+                    myMap.geoObjects.add(Placemark_{{ $clinic->id }});
+                @endforeach
+
+            @endif
 
         });
 

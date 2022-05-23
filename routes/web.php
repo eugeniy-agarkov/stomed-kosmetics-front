@@ -45,7 +45,7 @@ Route::group(
      * Contacts
      */
     Route::get('/contacts', 'Contact\ContactController@index')->name('contact');
-    Route::get('/contacts/{clinic}', 'Contact\ContactController@index')->name('contact.clinic');
+    Route::get('/contacts/{clinic}', 'Contact\ContactController@show')->name('contact.clinic');
 
     /**
      * Reviews
@@ -59,9 +59,27 @@ Route::group(
     Route::get('/directions/{direction}', 'Direction\DirectionCategoryController@index')->name('direction.category');
 
     /**
+     * Gallery
+     */
+    Route::get('/gallery', 'Gallery\GalleryController@index')->name('gallery');
+    Route::get('/gallery/{category}/{direction?}', 'Gallery\GalleryController@show')->name('gallery.show');
+
+    /**
      * Forms
      */
-    Route::post('/form/appointment', 'Form\AppointmentController@store')->name('form.appointment');
+    Route::group(
+        [
+            'prefix'        => 'form',
+            'middleware'    => 'ajax',
+        ],
+        function() {
+
+            Route::post('/appointment', 'Form\AppointmentController@store')->name('form.appointment');
+            Route::post('/review', 'Form\ReviewController@store')->name('form.review');
+            Route::post('/callback', 'Form\CallbackController@store')->name('form.callback');
+
+        }
+    );
 
 
 });

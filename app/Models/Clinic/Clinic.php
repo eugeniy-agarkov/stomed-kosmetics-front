@@ -4,6 +4,7 @@ namespace App\Models\Clinic;
 use App\Traits\IsActiveTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Clinic extends Model
@@ -25,6 +26,22 @@ class Clinic extends Model
     public function detail(): HasOne
     {
         return $this->hasOne(ClinicDetail::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function faq(): HasMany
+    {
+        return $this->hasMany(ClinicFaq::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function images(): HasMany
+    {
+        return $this->hasMany(ClinicImage::class);
     }
 
 }

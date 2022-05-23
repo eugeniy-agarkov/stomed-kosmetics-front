@@ -114,14 +114,13 @@
                                 <!-- controls > right -->
                                 <div class="reviews_slider__controls-right">
 
-                                    <a href="{{ route('review') }}" class="btn">
+                                    <a href="javascript:;" class="btn" data-src="#modalSendReview" data-fancybox>
                                         {{ __( 'Оставить свой отзыв' ) }}
                                     </a>
 
                                     <a href="{{ route('review') }}" class="btn btn-transparent">
                                         {{ __( 'Смотреть все' ) }}
                                     </a>
-
 
                                 </div>
                                 <!-- end controls > right -->

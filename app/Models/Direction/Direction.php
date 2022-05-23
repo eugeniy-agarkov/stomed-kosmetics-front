@@ -2,11 +2,13 @@
 
 namespace App\Models\Direction;
 
+use App\Models\Gallery\Gallery;
 use App\Queries\Blog\BlogCategoryQuery;
 use App\Queries\Direction\DirectionQuery;
 use App\Traits\IsActiveTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -27,6 +29,14 @@ class Direction extends Model
     protected $dates = ['published_at'];
 
     /**
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
      * @return HasOne
      */
     public function category(): HasOne
@@ -34,6 +44,14 @@ class Direction extends Model
 
         return $this->hasOne(DirectionCategory::class);
 
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function gallery(): HasMany
+    {
+        return $this->hasMany(Gallery::class);
     }
 
 }

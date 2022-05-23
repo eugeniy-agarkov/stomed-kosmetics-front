@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Contact;
+namespace App\Http\Controllers\Form;
 
 use App\Http\Controllers\Controller;
-use App\Models\Clinic\Clinic;
+use App\Http\Handlers\Form\StoreReviewHandler;
+use App\Http\Requests\Form\ReviewRequest;
+use App\Models\Reviews\Review;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class ReviewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +18,7 @@ class ContactController extends Controller
     public function index()
     {
 
-        return view('contact.index', [
-
-        ]);
+        //
 
     }
 
@@ -38,35 +38,44 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReviewRequest $request, StoreReviewHandler $handler)
     {
-        //
+
+        if ($review = $handler->process($request))
+        {
+
+            return response()->json([
+                'status' => 'success',
+                'message' => __( 'Сообщение успешно отправлено' ),
+            ], 200);
+
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'message' => $review
+        ], 400);
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function show(Clinic $clinic)
+    public function show(Review $review)
     {
-
-        return view('contact.index', [
-            'clinic' => $clinic,
-            'faqs' => $clinic->faq,
-            'galleries' => $clinic->images
-        ]);
-
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Review $review)
     {
         //
     }
@@ -75,10 +84,10 @@ class ContactController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Reviews\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Review $review)
     {
         //
     }
@@ -86,10 +95,10 @@ class ContactController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Review $review)
     {
         //
     }

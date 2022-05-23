@@ -33,8 +33,6 @@ class Form extends Model
         'clinic',
         'direction',
         'form',
-        'type',
-        'published_at',
     ];
 
 }
