@@ -36,7 +36,7 @@ Route::group(
      */
     Route::get('/news', 'News\BlogController@index')->name('news');
     Route::get('/news/{category}', 'News\BlogController@index')->name('news.category');
-    Route::get('/news/detail/{blog}', 'News\BlogController@show')->name('news.detail');
+    Route::get('/news-detail/{blog}', 'News\BlogController@show')->name('news.detail');
 
     /**
      * Doctors

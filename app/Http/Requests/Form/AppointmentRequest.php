@@ -14,8 +14,8 @@ class AppointmentRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'phone' => 'required|max:255',
-            'date' => 'required|max:255',
-            'time' => 'required|max:255',
+            //'date' => 'required|max:255',
+            //'time' => 'required|max:255',
         ];
     }
 

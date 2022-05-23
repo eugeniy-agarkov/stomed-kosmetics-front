@@ -13,5 +13,3 @@
     @include( 'sale.list' )
 
 @endsection
-
-@include( 'partials.contacts-script' )

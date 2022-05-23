@@ -11,6 +11,7 @@ use BenSampo\Enum\Enum;
  */
 final class FormEnum extends Enum
 {
-    const FEEDBACK =   1;
-    const APPOINTMENTS =   2;
+    const FEEDBACK = 1;
+    const APPOINTMENTS = 2;
+    const DIRECTION = 3;
 }

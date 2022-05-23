@@ -13,5 +13,3 @@
     @include( 'news.list' )
 
 @endsection
-
-@include( 'partials.contacts-script' )

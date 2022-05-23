@@ -7,6 +7,7 @@ use App\Scopes\News\BlogScope;
 use App\Traits\IsActiveTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Blog extends Model
@@ -54,5 +55,13 @@ class Blog extends Model
         parent::boot();
         static::addGlobalScope(new BlogScope());
 
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function prices(): HasMany
+    {
+        return $this->hasMany(BlogPrice::class);
     }
 }
