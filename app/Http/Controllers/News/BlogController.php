@@ -5,6 +5,7 @@ namespace App\Http\Controllers\News;
 use App\Http\Controllers\Controller;
 use App\Models\News\BlogCategory;
 use App\Models\News\Blog;
+use App\Models\Sales\Sale;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
@@ -70,7 +71,9 @@ class BlogController extends Controller
 
         return view('news.detail.index', [
             'news' => $blog,
-            'prices' => $blog->prices
+            'prices' => $blog->prices,
+            'relevant' => Blog::whereRelevant($blog->id)->get(),
+            'sales' => Sale::whereLast(5)->get()
         ]);
 
     }

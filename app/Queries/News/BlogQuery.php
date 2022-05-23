@@ -30,4 +30,16 @@ class BlogQuery extends Builder
 
     }
 
+    /**
+     * @param string $status
+     */
+    public function whereRelevant(int $id, int $limit = 4): static
+    {
+
+        $this->whereNot('id', $id)->take($limit);
+
+        return $this;
+
+    }
+
 }

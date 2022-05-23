@@ -4,6 +4,7 @@ namespace App\Models\Sales;
 
 use App\Queries\Sale\SaleQuery;
 use App\Scopes\Sale\SaleScope;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -79,6 +80,16 @@ class Sale extends Model
 
         parent::boot();
         static::addGlobalScope(new SaleScope());
+
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+
+        return ($this->date_end < Carbon::now()) ? false : true;
 
     }
 

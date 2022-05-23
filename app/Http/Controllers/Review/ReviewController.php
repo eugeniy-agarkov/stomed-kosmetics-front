@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Review;
 
 use App\Http\Controllers\Controller;
+use App\Models\Reviews\Review;
 use Illuminate\Http\Request;
 
 class ReviewController extends Controller
@@ -12,9 +13,20 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, Review $review)
     {
-        //
+
+        $reviews = $review->paginate(4);
+
+        if ( $request->ajax() )
+        {
+            return view('review.review-items', compact('reviews'));
+        }
+
+        return view('review.index', [
+            'reviews' => $reviews,
+        ]);
+
     }
 
     /**

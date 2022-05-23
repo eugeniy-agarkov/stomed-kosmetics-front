@@ -65,9 +65,15 @@ class SaleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, Sale $sale)
     {
-        //
+
+        return view('sale.detail.index', [
+            'sales' => $sale,
+            'prices' => $sale->prices,
+            'relevant' => Sale::whereRelevant($sale->id, 5)->get()
+        ]);
+
     }
 
     /**

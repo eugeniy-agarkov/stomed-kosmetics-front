@@ -1,6 +1,7 @@
 <?php
 namespace App\Queries\Sale;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 
 class SaleQuery extends Builder
@@ -12,7 +13,7 @@ class SaleQuery extends Builder
     public function whereLast(int $limit = 4): static
     {
 
-        $this->orderBy('published_at', 'desc')->take($limit);
+        $this->where('date_end', '>=', Carbon::now())->orderBy('published_at', 'desc')->take($limit);
 
         return $this;
 
@@ -25,6 +26,18 @@ class SaleQuery extends Builder
     {
 
         $this->where('name', 'LIKE', '%'.$search.'%');
+
+        return $this;
+
+    }
+
+    /**
+     * @param string $status
+     */
+    public function whereRelevant(int $id, int $limit = 4): static
+    {
+
+        $this->whereNot('id', $id)->take($limit);
 
         return $this;
 

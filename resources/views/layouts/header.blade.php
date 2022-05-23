@@ -89,7 +89,7 @@
                         <div class="header__center-row-left">
 
                             <!-- logo -->
-                            <a href="" class="header__logo">
+                            <a href="{{ route('home') }}" class="header__logo">
 
                                 <img
                                     src="{{ asset('build/assets/images/logo.png') }}"

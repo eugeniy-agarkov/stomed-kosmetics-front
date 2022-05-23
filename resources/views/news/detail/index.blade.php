@@ -12,6 +12,12 @@
 
     @include( 'news.detail.prices' )
 
-@endsection
+    @include( 'partials.cta-form-submit-application' )
 
-@include( 'partials.contacts-script' )
+    @include( 'news.detail.text' )
+
+    @include( 'news.detail.relevant' )
+
+    @include( 'partials.sale-last-slider', ['sales' => $sales, 'title' => __( 'Акции' )] )
+
+@endsection
