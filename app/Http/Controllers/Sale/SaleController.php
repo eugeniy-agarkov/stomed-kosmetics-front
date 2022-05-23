@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Sale;
 
 use App\Http\Controllers\Controller;
+use App\Models\Sales\Sale;
+use App\Models\Sales\SaleCategory;
 use Illuminate\Http\Request;
 
 class SaleController extends Controller
@@ -12,9 +14,28 @@ class SaleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, SaleCategory $category, Sale $sale)
     {
-        //
+
+        $categories = SaleCategory::all();
+        if( $category->id )
+        {
+            $items = $category->sales()->whereSearch($request->input('search'))->paginate(6);
+        }else{
+            $items = $sale->whereSearch($request->input('search'))->paginate(6);
+        }
+
+        if ( $request->ajax() )
+        {
+            return view('sale.sale-items', compact('items', 'categories', 'category'));
+        }
+
+        return view('sale.index', [
+            'category' => $category,
+            'items' => $items,
+            'categories' => $categories,
+        ]);
+
     }
 
     /**

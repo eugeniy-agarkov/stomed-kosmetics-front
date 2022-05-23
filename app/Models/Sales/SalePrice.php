@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Models\Gallery;
+namespace App\Models\Sales;
 
-use App\Models\Direction\Direction;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Gallery extends Model
+class SalePrice extends Model
 {
+
     use HasFactory;
 
     /**
@@ -17,16 +17,10 @@ class Gallery extends Model
     public $timestamps = false;
 
     /**
-     * @var string[]
-     */
-    protected $dates = ['published_at'];
-
-    /**
      * @return BelongsTo
      */
-    public function direction(): BelongsTo
+    public function sale(): BelongsTo
     {
-        return $this->belongsTo(Direction::class);
+        return $this->belongsTo(Sale::class);
     }
-
 }

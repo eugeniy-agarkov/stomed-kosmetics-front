@@ -28,12 +28,15 @@ Route::group(
      * Sales
      */
     Route::get('/sales', 'Sale\SaleController@index')->name('sale');
+    Route::get('/sales/{category}', 'Sale\SaleController@index')->name('sale.category');
+    Route::get('/sales/detail/{sale}', 'Sale\SaleController@show')->name('sale.detail');
 
     /**
      * News
      */
     Route::get('/news', 'News\BlogController@index')->name('news');
-    Route::get('/news/{blog}', 'News\BlogController@show')->name('news.detail');
+    Route::get('/news/{category}', 'News\BlogController@index')->name('news.category');
+    Route::get('/news/detail/{blog}', 'News\BlogController@show')->name('news.detail');
 
     /**
      * Doctors

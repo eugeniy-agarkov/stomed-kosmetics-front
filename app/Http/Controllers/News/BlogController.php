@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
+use App\Models\News\BlogCategory;
 use App\Models\News\Blog;
 use Illuminate\Http\Request;
 
@@ -13,9 +14,28 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, BlogCategory $category, Blog $blog)
     {
-        //
+
+        $categories = BlogCategory::all();
+        if( $category->id )
+        {
+            $items = $category->blogs()->whereSearch($request->input('search'))->paginate(6);
+        }else{
+            $items = $blog->whereSearch($request->input('search'))->paginate(6);
+        }
+
+        if ( $request->ajax() )
+        {
+            return view('news.news-items', compact('items', 'categories', 'category'));
+        }
+
+        return view('news.index', [
+            'category' => $category,
+            'items' => $items,
+            'categories' => $categories,
+        ]);
+
     }
 
     /**

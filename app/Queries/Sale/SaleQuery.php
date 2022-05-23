@@ -1,9 +1,9 @@
 <?php
-namespace App\Queries\News;
+namespace App\Queries\Sale;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class BlogQuery extends Builder
+class SaleQuery extends Builder
 {
 
     /**
