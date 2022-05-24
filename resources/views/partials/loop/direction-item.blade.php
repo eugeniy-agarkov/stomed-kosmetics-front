@@ -13,10 +13,17 @@
             <!-- end title -->
 
             <div>
-                <span>{{ __( 'Цена' ) }}: 2100 руб.</span>
+
+                @if( $item->prices()->count() > 1 )
+                    <span>{{ __( 'Цена от' ) }}: {{ $item->minPrice() }} руб.</span>
+                @elseif( $item->prices()->count() == 1 )
+                    <span>{{ __( 'Цена' ) }}: {{ $item->minPrice() }} руб.</span>
+                @endif
+
                 @if( $item->time_spending )
                     <small>{{ __( 'Продолжительность' ) }}: {{ $item->time_spending }}</small>
                 @endif
+
             </div>
 
         </div>

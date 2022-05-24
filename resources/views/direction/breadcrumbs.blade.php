@@ -19,20 +19,34 @@
 
                     </li>
 
-                    @if( request()->routeIs('direction.clinic'))
+                    @if( request()->routeIs('direction') )
 
                         <li>
-                            <a href="{{ route('direction', ['category' => $category]) }}">{{ $category->name }}</a>
+                            {{ __( 'Услуги' ) }}
+                        </li>
+
+                    @elseif( request()->routeIs('direction.category') )
+
+                        <li>
+                            <a href="{{ route('direction') }}">{{ __( 'Услуги' ) }}</a>
+                        </li>
+
+                        <li>
+                            {{ $category->name }}
+                        </li>
+
+                    @elseif( request()->routeIs('direction.clinic') )
+
+                        <li>
+                            <a href="{{ route('direction') }}">{{ __( 'Услуги' ) }}</a>
+                        </li>
+
+                        <li>
+                            <a href="{{ route('direction.category') }}">{{ $category->name }}</a>
                         </li>
 
                         <li>
                             {{ $clinic->name }}
-                        </li>
-
-                    @else
-
-                        <li>
-                            {{ $category->name }}
                         </li>
 
                     @endif

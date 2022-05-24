@@ -26,6 +26,14 @@
                         <form action="{{ route('form.appointment') }}" method="post" class="row ajaxForm">
                             @csrf
 
+                            @isset( $direction )
+                                <input
+                                    type="hidden"
+                                    name="direction_id"
+                                    value="{{ $direction->id }}"
+                                >
+                            @endisset
+
                             <input
                                 type="hidden"
                                 name="form"

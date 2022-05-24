@@ -24,14 +24,11 @@ class Form extends Model
      */
     protected $fillable = [
         'doctor_id',
+        'direction_id',
         'name',
         'phone',
         'content',
-        'source_url',
-        'source_title',
         'referer',
-        'clinic',
-        'direction',
         'form',
     ];
 

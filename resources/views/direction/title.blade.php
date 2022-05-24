@@ -13,7 +13,9 @@
                 <!-- Title -->
                 <h1 class="title_page__title">
 
-                    @if( request()->routeIs('direction'))
+                    @if( request()->routeIs('direction') )
+                        {{ isset($seo->h1) ? $seo->h1 : __( 'Услуги' ) }}
+                    @elseif( request()->routeIs('direction.category') )
                         {{ isset($seo->h1) ? $seo->h1 : $category->name }}
                     @else
                         {{ isset($seo->h1) ? $seo->h1 : $category->name . ' ' . $clinic->name }}

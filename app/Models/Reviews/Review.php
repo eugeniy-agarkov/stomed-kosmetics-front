@@ -3,6 +3,7 @@
 namespace App\Models\Reviews;
 
 use App\Queries\Review\ReviewQuery;
+use App\Traits\IsActiveTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Review extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, IsActiveTrait;
 
     /**
      * @var bool
@@ -28,6 +29,7 @@ class Review extends Model
     protected $fillable = [
         'clinic_id',
         'doctor_id',
+        'direction_id',
         'fio',
         'phone',
         'content',

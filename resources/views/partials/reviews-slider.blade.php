@@ -17,7 +17,13 @@
 
                         <!-- title -->
                         <h2 class="reviews_slider__title">
-                            {{ __( 'Отзывы нашей клиники' ) }}
+
+                            @if( isset($title) )
+                                {{ $title }}
+                            @else
+                                {{ __( 'Отзывы нашей клиники' ) }}
+                            @endif
+
                         </h2>
                         <!-- end title -->
 

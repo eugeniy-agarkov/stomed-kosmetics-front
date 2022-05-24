@@ -87,7 +87,7 @@
                                             class="icon left"
                                         >
 
-                                        @if( request()->has('direction') )
+                                        @if( request()->has('order') )
 
                                             @if( request()->order == 'asc' )
 
@@ -152,12 +152,23 @@
                                     <!-- list -->
                                     <ul class="filter__check-list">
 
+                                        <li>
+
+                                            <input type="checkbox" id="check-0" @if( request()->missing('clinic') ) checked @endif >
+                                            <a href="{{ url()->current() }}" for="check-0">
+
+                                                <span>{{ __( 'Все' ) }}</span>
+
+                                            </a>
+
+                                        </li>
+
                                         @foreach( $clinics as $item )
 
                                             <li>
 
-                                                <input type="checkbox" id="check-{{ $item->id }}" @if( $item->id == $clinic->id ) checked @endif>
-                                                <a href="{{ ($item->id == $clinic->id) ? route('direction', $category) : route('direction.clinic', ['category' => $category, 'clinic' => $item]) }}" for="check-{{ $item->id }}">
+                                                <input type="checkbox" id="check-{{ $item->id }}" @if( request()->input('clinic') == $item->id ) checked @endif>
+                                                <a href="{{ request()->fullUrlWithQuery( [ 'clinic' => $item->id ] ) }}" for="check-{{ $item->id }}">
 
                                                     <span>{{ $item->name }}</span>
 

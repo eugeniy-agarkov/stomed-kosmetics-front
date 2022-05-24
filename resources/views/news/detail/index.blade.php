@@ -10,7 +10,7 @@
 
     @include( 'news.detail.intro' )
 
-    @include( 'news.detail.prices' )
+    @include( 'partials.price-table', ['prices' => $prices] )
 
     @include( 'partials.cta-form-submit-application' )
 

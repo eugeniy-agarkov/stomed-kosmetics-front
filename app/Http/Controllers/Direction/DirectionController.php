@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Clinic\Clinic;
 use App\Models\Direction\Direction;
 use App\Models\Direction\DirectionCategory;
+use App\Models\Doctor\Doctor;
 use Illuminate\Http\Request;
 
 class DirectionController extends Controller
@@ -18,16 +19,26 @@ class DirectionController extends Controller
     public function index(Request $request, DirectionCategory $category, Clinic $clinic, Direction $direction)
     {
 
-        if( $clinic->id )
+        if( $category->id )
         {
 
-            $items = $category->directions()->where('clinic_id', $clinic->id)->paginate(6);
+            $items = $category
+                ->directions()
+                ->whereClinic($request->input('clinic'))
+                ->wherePrice($request->input('price'))
+                ->whereSearch($request->input('search'))
+                ->paginate(6);
 
         }else{
 
-            $items = $category->directions()->paginate(6);
+            $items = $direction
+                ->whereClinic($request->input('clinic'))
+                ->wherePrice($request->input('price'))
+                ->whereSearch($request->input('search'))
+                ->paginate(6);
 
         }
+
 
         if ( $request->ajax() )
         {
@@ -37,9 +48,7 @@ class DirectionController extends Controller
         return view('direction.index', [
             'category' => $category,
             'items' => $items,
-            'clinic' => $clinic
         ]);
-
 
     }
 
@@ -70,9 +79,17 @@ class DirectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, Direction $direction)
     {
-        //
+
+        return view('direction.detail.index', [
+            'direction' => $direction,
+            'prices' => $direction->prices,
+            'galleries' => $direction->gallery->take(2),
+            'reviews' => $direction->reviews->take(10),
+            'doctorsIsTop' => Doctor::whereIsTop(4)->get(),
+        ]);
+
     }
 
     /**

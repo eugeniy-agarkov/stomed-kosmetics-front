@@ -218,7 +218,7 @@
                                 @foreach( $directionCategories as $category )
                                     <li>
 
-                                        <a href="{{ route('direction', $category) }}">
+                                        <a href="{{ route('direction.category', $category) }}">
                                             {{ $category->title_menu }}
                                         </a>
 
@@ -378,7 +378,7 @@
                                             @foreach( $directionCategories as $category )
                                                 <li>
 
-                                                    <a href="{{ route('direction', $category) }}">
+                                                    <a href="{{ route('direction.category', $category) }}">
                                                         {{ $category->title_menu }}
                                                     </a>
 

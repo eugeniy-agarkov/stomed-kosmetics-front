@@ -3,8 +3,10 @@
 namespace App\Models\Direction;
 
 use App\Models\Gallery\Gallery;
+use App\Models\Reviews\Review;
 use App\Queries\Blog\BlogCategoryQuery;
 use App\Queries\Direction\DirectionQuery;
+use App\Scopes\Direction\DirectionScope;
 use App\Traits\IsActiveTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +31,17 @@ class Direction extends Model
     protected $dates = ['published_at'];
 
     /**
+     * @return void
+     */
+    protected static function boot(): void
+    {
+
+        parent::boot();
+        static::addGlobalScope(new DirectionScope());
+
+    }
+
+    /**
      * @return string
      */
     public function getRouteKeyName()
@@ -42,8 +55,16 @@ class Direction extends Model
     public function category(): HasOne
     {
 
-        return $this->hasOne(DirectionCategory::class);
+        return $this->hasOne(DirectionCategory::class, 'id');
 
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function images(): HasMany
+    {
+        return $this->hasMany(DirectionImage::class);
     }
 
     /**
@@ -64,5 +85,37 @@ class Direction extends Model
         return new DirectionQuery($query);
 
     }
+
+    /**
+     * @return HasMany
+     */
+    public function prices(): HasMany
+    {
+        return $this->hasMany(DirectionPrice::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    /**
+     * @return mixed
+     */
+    public function minPrice(): mixed
+    {
+
+        $prices = $this->prices()->get();
+
+        $min_price = $prices->min('price');
+        $min_price_discount = $prices->min('discount_price');
+
+        return $min_price_discount ? $min_price_discount : $min_price;
+
+    }
+
 
 }

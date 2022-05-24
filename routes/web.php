@@ -58,8 +58,8 @@ Route::group(
     /**
      * Directions
      */
-    Route::get('/directions/{category}', 'Direction\DirectionController@index')->name('direction');
-    Route::get('/directions/{category}/{clinic}', 'Direction\DirectionController@index')->name('direction.clinic');
+    Route::get('/directions', 'Direction\DirectionController@index')->name('direction');
+    Route::get('/directions/{category}', 'Direction\DirectionController@index')->name('direction.category');
     Route::get('/direction/{direction}', 'Direction\DirectionController@show')->name('direction.detail');
 
     /**
