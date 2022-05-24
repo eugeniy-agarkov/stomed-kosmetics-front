@@ -1,6 +1,8 @@
 <?php
 namespace App\Models\Clinic;
 
+use App\Models\Direction\Direction;
+use App\Models\Direction\DirectionCategory;
 use App\Traits\IsActiveTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +44,14 @@ class Clinic extends Model
     public function images(): HasMany
     {
         return $this->hasMany(ClinicImage::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function directions(): HasMany
+    {
+        return $this->hasMany(Direction::class);
     }
 
 }

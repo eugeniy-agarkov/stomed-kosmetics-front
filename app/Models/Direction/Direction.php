@@ -54,4 +54,15 @@ class Direction extends Model
         return $this->hasMany(Gallery::class);
     }
 
+    /**
+     * @param $query
+     * @return DirectionQuery
+     */
+    public function newEloquentBuilder($query): DirectionQuery
+    {
+
+        return new DirectionQuery($query);
+
+    }
+
 }

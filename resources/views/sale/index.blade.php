@@ -10,6 +10,10 @@
 
     @include( 'sale.title' )
 
+    @include( 'partials.mobile-panel' )
+
+    @include( 'partials.search-panel', [ 'title' => __( 'Быстрый поиск по акциям' ) ] )
+
     @include( 'sale.list' )
 
 @endsection

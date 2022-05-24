@@ -70,7 +70,7 @@
                                             <!-- content -->
                                             <div class="reviews__list-item-content">
 
-                                                {{ $review->content }}
+                                                {!! $review->content !!}
 
                                             </div>
                                             <!-- end content -->

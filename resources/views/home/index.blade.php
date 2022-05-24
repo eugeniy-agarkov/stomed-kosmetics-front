@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('meta')
-    <title>{{ $seo->meta_title ? $seo->meta_title : settings('company_name') }}</title>
+    <title>{{ (isset($seo->meta_title) && $seo->meta_title) ? $seo->meta_title : settings('company_name') }}</title>
 @endsection
 
 @section('content')

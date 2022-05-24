@@ -26,8 +26,8 @@
                                     @foreach( $clinics as $clinic )
                                             <li>
 
-                                            <a href="#">
-                                                <span>Косметология</span> {{ $clinic->name }}
+                                            <a href="{{ route('contact.clinic', $clinic) }}">
+                                                <span>{{ __( 'Косметология' ) }}</span> {{ $clinic->name }}
                                             </a>
 
                                         </li>
@@ -218,7 +218,7 @@
                                 @foreach( $directionCategories as $category )
                                     <li>
 
-                                        <a href="{{ route('direction.category', $category) }}">
+                                        <a href="{{ route('direction', $category) }}">
                                             {{ $category->title_menu }}
                                         </a>
 
@@ -378,7 +378,7 @@
                                             @foreach( $directionCategories as $category )
                                                 <li>
 
-                                                    <a href="{{ route('direction.category', $category) }}">
+                                                    <a href="{{ route('direction', $category) }}">
                                                         {{ $category->title_menu }}
                                                     </a>
 
