@@ -23,7 +23,14 @@
     <div class="popup__content">
 
         <!-- Form -->
-        <form action="" method="post" class="row">
+        <form action="{{ route('form.appointment') }}" method="post" class="row ajaxForm">
+            @csrf
+
+            <input
+                type="hidden"
+                name="form"
+                value="{{ \App\Enums\FormEnum::APPLICATION }}"
+            >
 
             <!-- col -->
             <div class="col-sm-12 form-group">
@@ -42,7 +49,7 @@
 
                 <input
                     type="tel"
-                    name="tel"
+                    name="phone"
                     placeholder="+7 495 000-00-00"
                     class="intl-phone"
                 >

@@ -3,7 +3,9 @@
 namespace App\Observers;
 
 use App\Enums\FormEnum;
+use App\Mail\Admin\FormMail;
 use App\Models\Form;
+use Illuminate\Support\Facades\Mail;
 
 class FormObserver
 {
@@ -36,6 +38,24 @@ class FormObserver
             $form->content = 'Дата записи: ' . request()->input('date') . ' в ' . $dateTime;
             $form->save();
         }
+
+        if( $form->form == FormEnum::DOCTORS )
+        {
+
+            $content = '<div>Доктор: ' . request()->input('doctor') . '</div>';
+            $content .= '<div>Клиника: ' . request()->input('location') . '</div>';
+            $content .= '<div>Дата: ' . request()->input('date') . '</div>';
+            $content .= '<div>Время: ' . request()->input('time') . '</div>';
+
+            $form->content = $content;
+            $form->save();
+
+        }
+
+        dispatch(function () use ($form) {
+            Mail::to(settings('email_appointments'))
+                ->send(new FormMail($form));
+        })->afterResponse();
 
     }
 

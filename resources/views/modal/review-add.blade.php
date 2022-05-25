@@ -34,6 +34,14 @@
                 >
             @endisset
 
+            @isset( $doctor )
+                <input
+                    type="hidden"
+                    name="doctor_id"
+                    value="{{ $doctor->id }}"
+                >
+            @endisset
+
             <!-- col -->
             <div class="col-sm-12 form-group">
 

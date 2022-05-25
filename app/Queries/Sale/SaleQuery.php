@@ -8,6 +8,16 @@ class SaleQuery extends Builder
 {
 
     /**
+     * @return \App\Queries\Sales\SaleQuery
+     */
+    public function whereBanner(): self
+    {
+        $this->where('is_home_banner', 1)->take(3);
+
+        return $this;
+    }
+
+    /**
      * @param string $status
      */
     public function whereLast(int $limit = 4): static

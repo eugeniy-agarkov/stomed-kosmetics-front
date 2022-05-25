@@ -36,7 +36,7 @@
 
                                             @foreach( $cats as $item )
                                                 <li>
-                                                    <a href="#">{{ $item->name }}</a>
+                                                    <a href="{{ route('direction.detail', $item) }}">{{ $item->name }}</a>
                                                 </li>
                                             @endforeach
 
@@ -51,7 +51,7 @@
                                 <!-- footer -->
                                 <div class="categories__item-text-footer">
 
-                                    <a href="#" class="btn btn-white">
+                                    <a href="{{ route('direction.category', $category) }}" class="btn btn-white">
                                         <span>{{ __( 'Смотреть все услуги' ) }}</span>
                                         <i>{{ __( 'Перейти' ) }}</i>
                                     </a>

@@ -43,10 +43,23 @@
         <div class="reviews__listing-row-right">
 
             <!-- excerpt -->
-            <div class="reviews__listing-excerpt">
+            <div class="reviews__listing-excerpt @if( \Illuminate\Support\Str::length($item->content) > 50 ) reviewsCollapse @endif">
                 {!! $item->content !!}
             </div>
             <!-- end excerpt -->
+
+            @if( \Illuminate\Support\Str::length($item->content) > 50 )
+            <!-- collapse -->
+                <a
+                    href="javascript:;"
+                    class="reviews__listing-excerpt-collapse reviewsCollapseLink"
+                    data-text-collapse="{{ __( 'Развернуть' ) }}"
+                    data-text-collapsed="{{ __( 'Свернуть' ) }}"
+                >
+                    {{ __( 'Развернуть' ) }}
+                </a>
+                <!-- end collapse -->
+            @endif
 
             @if( $item->original )
                 <!-- original -->

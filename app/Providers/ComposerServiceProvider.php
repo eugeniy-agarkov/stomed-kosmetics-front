@@ -28,7 +28,15 @@ class ComposerServiceProvider extends ServiceProvider
     {
 
         view()->composer('*', SeoComposer::class);
-        view()->composer(['layouts.header', 'partials.contacts', 'partials.contacts-script', 'contact.index', 'direction.index'], ClinicComposer::class);
+        view()->composer([
+            'layouts.header',
+            'partials.contacts',
+            'partials.contacts-script',
+            'contact.index',
+            'direction.index',
+            'doctor.index',
+            'doctor.clinic'
+        ], ClinicComposer::class);
         view()->composer(['layouts.header', 'layouts.footer', 'home.index'], DirectionCategoryComposer::class);
 
     }

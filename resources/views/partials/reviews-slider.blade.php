@@ -1,4 +1,4 @@
-@if( $reviewsLast->count() )
+
 
     <!-- Reviews Slider -->
     <section class="reviews_slider">
@@ -37,105 +37,121 @@
                         </div>
                         <!-- end archive -->
 
-                        <!-- slider -->
-                        <div class="swiper swiperReviews">
+                        @if( $reviewsLast->count() )
 
-                            <!-- Wrapper -->
-                            <div class="swiper-wrapper">
+                            <!-- slider -->
+                            <div class="swiper swiperReviews">
 
-                                @foreach( $reviewsLast as $review )
+                                <!-- Wrapper -->
+                                <div class="swiper-wrapper">
 
-                                    <!-- Slide -->
-                                    <div class="swiper-slide">
+                                    @foreach( $reviewsLast as $review )
 
-                                        <!-- item -->
-                                        <div class="reviews__list-item">
+                                        <!-- Slide -->
+                                        <div class="swiper-slide">
 
-                                            <!-- header -->
-                                            <div class="reviews__list-item-header">
+                                            <!-- item -->
+                                            <div class="reviews__list-item">
 
-                                                @if( $review->type === 1 )
-                                                    <img
-                                                        src="{{ asset('build/assets/images/icons/like.svg') }}"
-                                                        alt="{{ __( 'Позитивный' ) }}"
-                                                        title="{{ __( 'Позитивный' ) }}"
-                                                    >
-                                                @else
-                                                    <img
-                                                        src="{{ asset('build/assets/images/icons/dislike.svg') }}"
-                                                        alt="{{ __( 'Негативный' ) }}"
-                                                        title="{{ __( 'Негативный' ) }}"
-                                                    >
-                                                @endif
+                                                <!-- header -->
+                                                <div class="reviews__list-item-header">
 
-                                                <span>{{ $review->fio }}</span>
+                                                    @if( $review->type === 1 )
+                                                        <img
+                                                            src="{{ asset('build/assets/images/icons/like.svg') }}"
+                                                            alt="{{ __( 'Позитивный' ) }}"
+                                                            title="{{ __( 'Позитивный' ) }}"
+                                                        >
+                                                    @else
+                                                        <img
+                                                            src="{{ asset('build/assets/images/icons/dislike.svg') }}"
+                                                            alt="{{ __( 'Негативный' ) }}"
+                                                            title="{{ __( 'Негативный' ) }}"
+                                                        >
+                                                    @endif
+
+                                                    <span>{{ $review->fio }}</span>
+
+                                                </div>
+                                                <!-- end header -->
+
+                                                <!-- content -->
+                                                <div class="reviews__list-item-content">
+
+                                                    {!! $review->content !!}
+
+                                                </div>
+                                                <!-- end content -->
+
+                                                <!-- footer -->
+                                                <div class="reviews__list-item-footer">
+
+                                                    {{ Date::parse($review->published_at)->format('j F, Y года') }}
+
+                                                </div>
+                                                <!-- end footer -->
 
                                             </div>
-                                            <!-- end header -->
-
-                                            <!-- content -->
-                                            <div class="reviews__list-item-content">
-
-                                                {!! $review->content !!}
-
-                                            </div>
-                                            <!-- end content -->
-
-                                            <!-- footer -->
-                                            <div class="reviews__list-item-footer">
-
-                                                {{ Date::parse($review->published_at)->format('j F, Y года') }}
-
-                                            </div>
-                                            <!-- end footer -->
+                                            <!-- end item -->
 
                                         </div>
-                                        <!-- end item -->
+                                        <!-- End Slide -->
+
+                                    @endforeach
+
+                                </div>
+                                <!-- End Wrapper -->
+
+                                <!-- controls -->
+                                <div class="reviews_slider__controls">
+
+                                    <!-- controls > left -->
+                                    <div class="reviews_slider__controls-left">
+
+                                        <div class="swiper-button-prev"></div>
+
+                                        <!-- Pagination -->
+                                        <div class="swiper-pagination"></div>
+                                        <!-- End Pagination -->
+
+                                        <div class="swiper-button-next"></div>
 
                                     </div>
-                                    <!-- End Slide -->
+                                    <!-- end controls > left -->
 
-                                @endforeach
+                                    <!-- controls > right -->
+                                    <div class="reviews_slider__controls-right">
 
-                            </div>
-                            <!-- End Wrapper -->
+                                        <a href="javascript:;" class="btn" data-src="#modalSendReview" data-fancybox>
+                                            {{ __( 'Оставить свой отзыв' ) }}
+                                        </a>
 
-                            <!-- controls -->
-                            <div class="reviews_slider__controls">
+                                        <a href="{{ route('review') }}" class="btn btn-transparent">
+                                            {{ __( 'Смотреть все' ) }}
+                                        </a>
 
-                                <!-- controls > left -->
-                                <div class="reviews_slider__controls-left">
-
-                                    <div class="swiper-button-prev"></div>
-
-                                    <!-- Pagination -->
-                                    <div class="swiper-pagination"></div>
-                                    <!-- End Pagination -->
-
-                                    <div class="swiper-button-next"></div>
+                                    </div>
+                                    <!-- end controls > right -->
 
                                 </div>
-                                <!-- end controls > left -->
-
-                                <!-- controls > right -->
-                                <div class="reviews_slider__controls-right">
-
-                                    <a href="javascript:;" class="btn" data-src="#modalSendReview" data-fancybox>
-                                        {{ __( 'Оставить свой отзыв' ) }}
-                                    </a>
-
-                                    <a href="{{ route('review') }}" class="btn btn-transparent">
-                                        {{ __( 'Смотреть все' ) }}
-                                    </a>
-
-                                </div>
-                                <!-- end controls > right -->
+                                <!-- end controls -->
 
                             </div>
-                            <!-- end controls -->
+                            <!-- end slider -->
 
-                        </div>
-                        <!-- end slider -->
+                        @else
+
+                            <div class="reviews_slider__empty">{{ __( 'Отзывов пока нет' ) }}</div>
+
+                            <a href="javascript:;" class="btn" data-src="#modalSendReview" data-fancybox>
+                                {{ __( 'Оставить свой отзыв' ) }}
+                            </a>
+
+                            <a href="{{ route('review') }}" class="btn btn-transparent">
+                                {{ __( 'Смотреть все' ) }}
+                            </a>
+
+                        @endif
 
                     </div>
                     <!-- end inner -->
@@ -152,4 +168,4 @@
     </section>
     <!-- End Reviews Slider -->
 
-@endif
+

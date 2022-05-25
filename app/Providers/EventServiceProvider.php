@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Models\Form;
+use App\Models\Reviews\Review;
 use App\Observers\FormObserver;
+use App\Observers\ReviewObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -29,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
     public function boot()
     {
         Form::observe(FormObserver::class);
+        Review::observe(ReviewObserver::class);
     }
 
     /**

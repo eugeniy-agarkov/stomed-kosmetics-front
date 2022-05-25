@@ -44,10 +44,15 @@
                         <div class="header__top-row-right">
 
                             <!-- search -->
-                            <form action="" method="get" class="header__search">
+                            <form action="{{ route('search') }}" method="get" class="header__search">
 
                                 <button type="submit"></button>
-                                <input type="text" placeholder="{{ __( 'Поиск' ) }}">
+                                <input
+                                    type="text"
+                                    placeholder="{{ __( 'Поиск' ) }}"
+                                    name="q"
+                                    value="{{ request()->q }}"
+                                >
 
                             </form>
                             <!-- end search -->

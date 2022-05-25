@@ -1,50 +1,46 @@
-<li>
+<!-- Item -->
+<a href="{{ route('direction.detail', $item) }}" class="services__list-item">
 
-    <!-- Item -->
-    <a href="{{ route('direction.detail', $item) }}" class="services__list-item">
+    <!-- text -->
+    <div class="services__list-item-text">
 
-        <!-- text -->
-        <div class="services__list-item-text">
+        <!-- title -->
+        <h5 class="services__list-item-title">
+            {{ $item->name }}
+        </h5>
+        <!-- end title -->
 
-            <!-- title -->
-            <h5 class="services__list-item-title">
-                {{ $item->name }}
-            </h5>
-            <!-- end title -->
+        <div>
 
-            <div>
+            @if( $item->prices()->count() > 1 )
+                <span>{{ __( 'Цена от' ) }}: {{ $item->minPrice() }} руб.</span>
+            @elseif( $item->prices()->count() == 1 )
+                <span>{{ __( 'Цена' ) }}: {{ $item->minPrice() }} руб.</span>
+            @endif
 
-                @if( $item->prices()->count() > 1 )
-                    <span>{{ __( 'Цена от' ) }}: {{ $item->minPrice() }} руб.</span>
-                @elseif( $item->prices()->count() == 1 )
-                    <span>{{ __( 'Цена' ) }}: {{ $item->minPrice() }} руб.</span>
-                @endif
-
-                @if( $item->time_spending )
-                    <small>{{ __( 'Продолжительность' ) }}: {{ $item->time_spending }}</small>
-                @endif
-
-            </div>
+            @if( $item->time_spending )
+                <small>{{ __( 'Продолжительность' ) }}: {{ $item->time_spending }}</small>
+            @endif
 
         </div>
-        <!-- end text -->
 
-        @if ( Storage::disk('public')->exists('thumbnail/' . $item->image) )
-            <!-- image -->
-            <div class="services__list-item-image">
+    </div>
+    <!-- end text -->
 
-                <img
-                    src="{{ Storage::url('thumbnail/' . $item->image) }}"
-                    alt="{{ $item->name }}"
-                    title="{{ $item->name }}"
-                    class="img-responsive"
-                >
+    @if ( Storage::disk('public')->exists('thumbnail/' . $item->image) )
+        <!-- image -->
+        <div class="services__list-item-image">
 
-            </div>
-            <!-- end image -->
-        @endif
+            <img
+                src="{{ Storage::url('thumbnail/' . $item->image) }}"
+                alt="{{ $item->name }}"
+                title="{{ $item->name }}"
+                class="img-responsive"
+            >
 
-    </a>
-    <!-- End Item -->
+        </div>
+        <!-- end image -->
+    @endif
 
-</li>
+</a>
+<!-- End Item -->

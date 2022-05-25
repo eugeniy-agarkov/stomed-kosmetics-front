@@ -42,6 +42,7 @@ Route::group(
      * Doctors
      */
     Route::get('/doctors', 'Doctor\DoctorController@index')->name('doctor');
+    Route::get('/doctors/{clinic}', 'Doctor\DoctorController@index')->name('doctor.clinic');
     Route::get('/doctor/{doctor}', 'Doctor\DoctorController@show')->name('doctor.show');
 
     /**
@@ -69,6 +70,17 @@ Route::group(
     Route::get('/gallery/{category}/{direction?}', 'Gallery\GalleryController@show')->name('gallery.show');
 
     /**
+     * Search
+     */
+    Route::get('/search', 'Search\SearchController@index')->name('search');
+    Route::get('/search/{q?}', 'Search\SearchController@index')->name('search.index');
+
+    /**
+     * Text Pages
+     */
+    Route::get('/text', 'Text\TextController@index')->name('text');
+
+    /**
      * Forms
      */
     Route::group(
@@ -84,6 +96,5 @@ Route::group(
 
         }
     );
-
 
 });

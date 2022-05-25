@@ -1,14 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Text;
 
-use App\Models\Doctor\Doctor;
-use App\Models\News\Blog;
-use App\Models\Reviews\Review;
-use App\Models\Sales\Sale;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class TextController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +15,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        return view('home.index', [
-            'news' => Blog::whereLast()->get(),
-            'doctorsIsTop' => Doctor::whereIsTop(4)->get(),
-            'reviewsLast' => Review::whereLast(5)->get(),
-            'saleBanner' => Sale::whereBanner()->get(),
-        ]);
+        //
 
     }
 
@@ -54,9 +46,11 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
+
         //
+
     }
 
     /**

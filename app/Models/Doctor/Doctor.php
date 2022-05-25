@@ -3,13 +3,16 @@
 namespace App\Models\Doctor;
 
 use App\Models\Clinic\Clinic;
+use App\Models\Reviews\Review;
 use App\Queries\Doctor\DoctorQuery;
+use App\Scopes\Doctor\DoctorScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Lang;
 
 class Doctor extends Model
 {
@@ -25,6 +28,17 @@ class Doctor extends Model
      * @var string[]
      */
     protected $dates = ['published_at'];
+
+    /**
+     * @return void
+     */
+    protected static function boot(): void
+    {
+
+        parent::boot();
+        static::addGlobalScope(new DoctorScope());
+
+    }
 
     /**
      * @param $query
@@ -75,6 +89,29 @@ class Doctor extends Model
     public function prices(): HasMany
     {
         return $this->hasMany(DoctorPrice::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class, 'doctor_id');
+    }
+
+    /**
+     * @return string
+     */
+    public function getExperienceAttribute($value): string
+    {
+
+        if( ! empty( $value ) )
+        {
+            $count = now()->year - (int) $value;
+            $value = $count . ' ' . Lang::choice('год|года|лет', $count, [], 'ru');
+        }
+
+        return $value;
     }
 
 }

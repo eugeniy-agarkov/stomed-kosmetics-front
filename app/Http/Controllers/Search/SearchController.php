@@ -1,28 +1,37 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Search;
 
-use App\Models\Doctor\Doctor;
-use App\Models\News\Blog;
-use App\Models\Reviews\Review;
-use App\Models\Sales\Sale;
+use App\Http\Controllers\Controller;
+use App\Services\Search\SearchService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class HomeController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
-        return view('home.index', [
-            'news' => Blog::whereLast()->get(),
-            'doctorsIsTop' => Doctor::whereIsTop(4)->get(),
-            'reviewsLast' => Review::whereLast(5)->get(),
-            'saleBanner' => Sale::whereBanner()->get(),
+        if( $request->has('q') )
+        {
+            return redirect()->route('search.index', ['q' => $request->q]);
+        }
+
+        $results = new SearchService($request);
+        $results = $results->whereSearch()->paginate(4);
+
+        if ( $request->ajax() )
+        {
+            return view('search.search-items', compact('results'));
+        }
+
+        return view('search.index', [
+            'results' => $results,
         ]);
 
     }
@@ -54,9 +63,11 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
+
         //
+
     }
 
     /**

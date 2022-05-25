@@ -34,51 +34,41 @@
                         </div>
                         <!-- end text -->
 
-                        <!-- Sales -->
-                        <ul class="home_intro__sales">
+                        @if( $saleBanner->count() )
 
-                            <li>
+                            <!-- Sales -->
+                            <ul class="home_intro__sales">
 
-                                <a href="#">
-                                    <small>акция</small>
-                                    <p>Ботулинотерапия -15%</p>
-                                </a>
+                                @foreach( $saleBanner as $sale )
 
-                            </li>
+                                    <li>
 
-                            <li>
+                                        <a href="{{ route('sale.detail', $sale) }}">
+                                            <small>{{ __( 'акция' ) }}</small>
+                                            <p>{{ \Illuminate\Support\Str::limit($sale->name, 35) }}</p>
+                                        </a>
 
-                                <a href="#">
-                                    <small>акция</small>
-                                    <p>Лазерная хирургия -30%</p>
-                                </a>
+                                    </li>
 
-                            </li>
+                                @endforeach
 
-                            <li>
+                                <li>
 
-                                <a href="#">
-                                    <small>акция</small>
-                                    <p>Безинъекционная мезотерапия -8%</p>
-                                </a>
+                                    <a href="{{ route('sale') }}" class="archive">
+                                        <img
+                                            src="{{ asset('build/assets/images/icons/plus.svg') }}"
+                                            alt="{{ __( 'Больше акций' ) }}"
+                                            title="{{ __( 'Больше акций' ) }}"
+                                        >
+                                        <p>{{ __( 'Больше акций' ) }}</p>
+                                    </a>
 
-                            </li>
+                                </li>
 
-                            <li>
+                            </ul>
+                            <!-- End Sales -->
 
-                                <a href="#" class="archive">
-                                    <img
-                                        src="assets/images/icons/plus.svg"
-                                        alt=""
-                                        title=""
-                                    >
-                                    <p>Больше акций</p>
-                                </a>
-
-                            </li>
-
-                        </ul>
-                        <!-- End Sales -->
+                        @endif
 
                     </div>
                     <!-- end row > left -->
@@ -89,61 +79,35 @@
                         <!-- app -->
                         <div class="home_intro__app">
 
-                            <!-- point -->
-                            <div class="home_intro__app-point one">
+                            @if( $saleBanner->count() )
+
+                                @foreach( $saleBanner as $sale )
+
+                                    <!-- point -->
+                                    <div class="home_intro__app-point @if( $loop->iteration == 1 ) one @elseif( $loop->iteration == 2 ) two @elseif( $loop->iteration == 3 ) three @endif">
                                         <span class="homeIntroPoint">
                                             <i>+</i>
                                             <i>-</i>
                                         </span>
 
-                                <!-- message -->
-                                <div class="home_intro__app-point-message left bottom">
-                                    <p>Лазерная хирургия -30%</p>
-                                    <a href="#">Смотреть акцию</a>
-                                </div>
-                                <!-- end message -->
+                                        <!-- message -->
+                                        <div class="home_intro__app-point-message left bottom">
+                                            <p>{{ $sale->name }}</p>
+                                            <a href="{{ route('sale.detail', $sale) }}">{{ __( 'Смотреть акцию' ) }}</a>
+                                        </div>
+                                        <!-- end message -->
 
-                            </div>
-                            <!-- end point -->
+                                    </div>
+                                    <!-- end point -->
 
-                            <!-- point -->
-                            <div class="home_intro__app-point two">
-                                        <span class="homeIntroPoint">
-                                            <i>+</i>
-                                            <i>-</i>
-                                        </span>
+                                @endforeach
 
-                                <!-- message -->
-                                <div class="home_intro__app-point-message right top">
-                                    <p>Ботулинотерапия -15%</p>
-                                    <a href="#">Смотреть акцию</a>
-                                </div>
-                                <!-- end message -->
-
-                            </div>
-                            <!-- end point -->
-
-                            <!-- point -->
-                            <div class="home_intro__app-point three">
-                                        <span class="homeIntroPoint">
-                                            <i>+</i>
-                                            <i>-</i>
-                                        </span>
-
-                                <!-- message -->
-                                <div class="home_intro__app-point-message right bottom">
-                                    <p>Безинъекционная мезотерапия -8%</p>
-                                    <a href="#">Смотреть акцию</a>
-                                </div>
-                                <!-- end message -->
-
-                            </div>
-                            <!-- end point -->
+                            @endif
 
                             <img
-                                src="assets/images/home-intro-woman.png"
-                                alt=""
-                                title=""
+                                src="{{ asset('build/assets/images/home-intro-woman.png') }}"
+                                alt="{{ $seo->h1 }}"
+                                title="{{ $seo->h1 }}"
                                 class="img-responsive"
                             >
 
