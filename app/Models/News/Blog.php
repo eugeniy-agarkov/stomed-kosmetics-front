@@ -8,6 +8,7 @@ use App\Traits\IsActiveTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Blog extends Model
@@ -63,5 +64,13 @@ class Blog extends Model
     public function prices(): HasMany
     {
         return $this->hasMany(BlogPrice::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function page(): HasOne
+    {
+        return $this->hasOne(BlogPage::class);
     }
 }

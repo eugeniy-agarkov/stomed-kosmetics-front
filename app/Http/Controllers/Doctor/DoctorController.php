@@ -71,6 +71,7 @@ class DoctorController extends Controller
             'sertificats' => $doctor->sertificats,
             'reviews' => $doctor->reviews->take(10),
             'sales' => Sale::whereLast(5)->get(),
+            'seo' => $doctor->page,
         ]);
 
     }

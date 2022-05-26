@@ -103,6 +103,14 @@ class Direction extends Model
     }
 
     /**
+     * @return HasOne
+     */
+    public function page(): HasOne
+    {
+        return $this->hasOne(DirectionPage::class);
+    }
+
+    /**
      * @return mixed
      */
     public function minPrice(): mixed

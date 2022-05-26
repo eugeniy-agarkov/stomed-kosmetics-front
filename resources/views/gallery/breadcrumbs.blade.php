@@ -32,13 +32,13 @@
                             </li>
 
                             <li>
-                                {{ $direction->name }}
+                                {{ $direction->name }}: {{ __( 'фото до и после' ) }}
                             </li>
 
                         @else
 
                             <li>
-                                {{ $category->name }}
+                                {{ $category->name }}: {{ __( 'фото до и после' ) }}
                             </li>
 
                         @endif
@@ -46,7 +46,7 @@
                     @else
 
                         <li>
-                            {{ __( 'Галерея' ) }}
+                            {{ __( 'Галерея' ) }}: {{ __( 'фото до и после' ) }}
                         </li>
 
                     @endif

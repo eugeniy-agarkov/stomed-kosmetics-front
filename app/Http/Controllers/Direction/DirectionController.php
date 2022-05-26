@@ -88,6 +88,7 @@ class DirectionController extends Controller
             'galleries' => $direction->gallery->take(2),
             'reviews' => $direction->reviews->take(10),
             'doctorsIsTop' => Doctor::whereIsTop(4)->get(),
+            'seo' => $direction->page
         ]);
 
     }

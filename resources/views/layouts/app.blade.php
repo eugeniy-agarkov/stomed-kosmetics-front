@@ -17,6 +17,7 @@
             <meta name="robots" content="noindex" />
         @endif
     @endisset
+
     @yield('meta')
 
     <link rel="shortcut icon" href="{{ asset('/favicon.ico') }}">

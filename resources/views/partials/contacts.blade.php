@@ -64,4 +64,6 @@
 
 @endif
 
-@include( 'partials.contacts-script' )
+@push('custom-scripts')
+    @include( 'partials.contacts-script' )
+@endpush

@@ -54,4 +54,12 @@ class Clinic extends Model
         return $this->hasMany(Direction::class);
     }
 
+    /**
+     * @return HasOne
+     */
+    public function page(): HasOne
+    {
+        return $this->hasOne(ClinicPage::class);
+    }
+
 }

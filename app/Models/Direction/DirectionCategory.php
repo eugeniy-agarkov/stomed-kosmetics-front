@@ -8,6 +8,7 @@ use App\Scopes\IsActiveScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class DirectionCategory extends Model
 {
@@ -59,6 +60,14 @@ class DirectionCategory extends Model
     public function directions(): HasMany
     {
         return $this->hasMany(Direction::class, 'category_id');
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function page(): HasOne
+    {
+        return $this->hasOne(DirectionCategoryPage::class, 'category_id');
     }
 
 }

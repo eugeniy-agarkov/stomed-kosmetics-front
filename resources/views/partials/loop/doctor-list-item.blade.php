@@ -83,7 +83,7 @@
 
                     <!-- Link -->
                     <a href="{{ route('doctor.show', $item) }}" class="doctors__grid-archive">
-                        {{ __( 'Читать подробнее' ) }}
+                        {{ __( 'Смотреть детальную информацию' ) }}
                     </a>
                     <!-- End Link -->
 
