@@ -26,6 +26,14 @@
         <form action="{{ route('form.appointment') }}" method="post" class="row ajaxForm">
             @csrf
 
+            @if( request()->routeIs('doctor.show') )
+                <input
+                    type="hidden"
+                    name="doctor_id"
+                    value="{{ $doctor->id }}"
+                >
+            @endif
+
             <input
                 type="hidden"
                 name="content"

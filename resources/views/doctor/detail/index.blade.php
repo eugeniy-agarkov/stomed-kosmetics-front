@@ -12,7 +12,7 @@
 
     @include( 'doctor.detail.text' )
 
-    @include( 'doctor.detail.video' )
+    @include( 'partials.price-table' )
 
     @include( 'partials.cta-form-submit-application' )
 

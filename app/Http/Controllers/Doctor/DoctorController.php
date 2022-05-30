@@ -26,7 +26,7 @@ class DoctorController extends Controller
 
         if ( $request->ajax() )
         {
-            return view('doctor.direction-items', compact('items'));
+            return view('doctor.doctor-items', compact('items'));
         }
 
         return view('doctor.index', [
