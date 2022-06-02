@@ -44,6 +44,7 @@ Route::group(
     Route::get('/doctors', 'Doctor\DoctorController@index')->name('doctor');
     Route::get('/doctors/{clinic}', 'Doctor\DoctorController@index')->name('doctor.clinic');
     Route::get('/doctor/{doctor}', 'Doctor\DoctorController@show')->name('doctor.show');
+    Route::get('/doctor/{doctor}/slots', 'Doctor\DoctorController@slots')->name('doctor.slots')->middleware('ajax');
 
     /**
      * Contacts

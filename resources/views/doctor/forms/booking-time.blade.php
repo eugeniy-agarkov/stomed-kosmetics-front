@@ -1,6 +1,8 @@
 <!-- form -->
-<form action="{{ route('form.appointment') }}" method="post" class="ajaxForm">
+<form action="{{ route('form.appointment') }}" method="post" class="form ajaxForm" data-slot-url="{{ route('doctor.slots', $item) }}" id="slot-doctor-{{ $item->id }}">
     @csrf
+
+    @php( $firstClinic = $item->clinics->first() )
 
     <input
         type="hidden"
@@ -11,6 +13,8 @@
     <input type="hidden" name="time" value="">
     <input type="hidden" name="doctor" value="{{ $item->name }}">
     <input type="hidden" name="doctor_id" value="{{ $item->id }}">
+
+    <input type="hidden" name="clinic" value="{{ $firstClinic->id }}">
 
     <!-- Order -->
     <div class="doctors__grid-order">
@@ -26,6 +30,7 @@
                     value="{{ now()->format('d/m/Y') }}"
                     class="doctorOrderDate"
                     name="date"
+                    data-doctor="{{ $item->id }}"
                 >
             </div>
             <!-- End Date -->
@@ -35,9 +40,11 @@
                 <!-- Locations -->
                 <div class="doctors__grid-order-locations">
                     <span>{{ __( 'Клиника' ) }}:</span>
+
+
                     <input
                         type="text"
-                        value="{{ $item->clinics->first()->name }}"
+                        value="{{ $firstClinic->name }}"
                         class="doctorOrderLocation"
                         name="location"
                     >
@@ -47,7 +54,11 @@
 
                         @foreach( $item->clinics as $clinic )
                             <li>
-                                <a href="javascript:;">{{ $clinic->name }}</a>
+                                <a
+                                    href="javascript:;"
+                                    data-doctor="{{ $item->id }}"
+                                    data-clinic="{{ $clinic->id }}"
+                                >{{ $clinic->name }}</a>
                             </li>
                         @endforeach
 
@@ -65,103 +76,9 @@
         <!-- Content -->
         <div class="doctors__grid-order-content">
 
-            <!-- List -->
-            <ul class="doctors__grid-order-time">
-
-                <li>
-
-                    <a href="javascript:;" class="doctorOrderTimeItem">
-                        <span>7:00</span>
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a href="javascript:;" class="doctorOrderTimeItem">
-                        <span>7:30</span>
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a href="javascript:;" class="doctorOrderTimeItem">
-                        <span>8:00</span>
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a href="javascript:;" class="doctorOrderTimeItem">
-                        <span>8:30</span>
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a href="javascript:;" class="doctorOrderTimeItem">
-                        <span>9:00</span>
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a href="javascript:;" class="doctorOrderTimeItem">
-                        <span>9:30</span>
-                    </a>
-
-                </li>
-
-                <li>
-
-                    <a href="javascript:;" class="doctorOrderTimeItem">
-                        <span>10:30</span>
-                    </a>
-
-                </li>
-
-                <li class="hidden">
-
-                    <a href="javascript:;" class="doctorOrderTimeItem">
-                        <span>11:00</span>
-                    </a>
-
-                </li>
-
-                <li class="hidden">
-
-                    <a href="javascript:;" class="doctorOrderTimeItem">
-                        <span>11:30</span>
-                    </a>
-
-                </li>
-
-                <li class="hidden">
-
-                    <a href="javascript:;" class="doctorOrderTimeItem">
-                        <span>12:00</span>
-                    </a>
-
-                </li>
-
-                <li class="drop doctorOrderTimeDrop">
-
-                    <a href="javascript:;">
-                        <img
-                            src="{{ asset('build/assets/images/icons/arrow-bottom.svg') }}"
-                            alt="{{ __( 'Развернуть' ) }}"
-                            title="{{ __( 'Развернуть' ) }}"
-                        >
-                    </a>
-
-                </li>
-
-            </ul>
-            <!-- End List -->
+            <div class="ajaxSlots">
+                @include( 'doctor.doctor-slots', [ 'slots' => $item->getSlots(now()->format('Y-m-d'), $item->clinics->first()->code) ] )
+            </div>
 
             <!-- Form -->
             <div class="doctors__grid-order-content-form">

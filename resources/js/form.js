@@ -42,6 +42,7 @@ jQuery( function( $ ) {
                 $.ajax( {
                     beforeSend  :   function(xhr){
 
+                        $this.addClass('loader')
                         $this.find('.error').remove()
 
                     },
@@ -51,7 +52,7 @@ jQuery( function( $ ) {
                     },
                     method      :   'POST',
                     complete    :   function(){
-
+                        $this.removeClass('loader')
                     },
                     error: function(response) {
 

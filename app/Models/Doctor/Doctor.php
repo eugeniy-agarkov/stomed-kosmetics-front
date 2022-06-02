@@ -4,8 +4,10 @@ namespace App\Models\Doctor;
 
 use App\Models\Clinic\Clinic;
 use App\Models\Reviews\Review;
+use App\Models\Slot;
 use App\Queries\Doctor\DoctorQuery;
 use App\Scopes\Doctor\DoctorScope;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -112,6 +114,55 @@ class Doctor extends Model
         }
 
         return $value;
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function slots(): HasMany
+    {
+        return $this->hasMany(Slot::class, 'doctorId', 'code');
+    }
+
+    /**
+     * @return array
+     */
+    public function getSlots($date = null, $clinic): array
+    {
+
+        if( !$date )
+        {
+            $date = Carbon::now()->format('Y-m-d');
+        }
+
+        $items = self::slots()->where('clinicId', $clinic)->get();
+
+        $slot_duration = 15;
+        $dates = [];
+
+        if( ! $items->count() ) return $dates;
+
+        foreach ( $items as $item )
+        {
+
+            $cDate = Carbon::parse($item->from);
+            $cDate_end = Carbon::parse($item->to);
+
+            $slots = $cDate->diffInMinutes($cDate_end) / $slot_duration;
+
+            $dates[$cDate->toDateString()][] = $cDate->format('H:i');
+
+            for( $s = 1; $s <=$slots; $s++ )
+            {
+
+                $dates[$cDate->toDateString()][] = $cDate->addMinute($slot_duration)->format('H:i');
+
+            }
+
+        }
+
+        return array_key_exists($date, $dates) ? $dates[$date] : [];
+
     }
 
 }

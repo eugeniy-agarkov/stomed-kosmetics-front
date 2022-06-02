@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Doctor;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clinic\Clinic;
-use App\Models\Direction\Direction;
 use App\Models\Doctor\Doctor;
 use App\Models\Sales\Sale;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -108,5 +108,24 @@ class DoctorController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     * @param Doctor $doctor
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function slots(Request $request, Doctor $doctor)
+    {
+
+        $date = Carbon::createFromFormat('d.m.Y', $request->input('date'))->format('Y-m-d');
+        $clinic = Clinic::find($request->input('clinic'));
+        $slots = $doctor->getSlots($date, $clinic->code);
+
+        return response()->json([
+            'status' => 'success',
+            'html' => view('doctor.doctor-slots', compact('slots'))->render(),
+        ], 200);
+
     }
 }

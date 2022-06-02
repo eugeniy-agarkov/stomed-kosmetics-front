@@ -10,8 +10,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="canonical" href="{{ isset($seo->canonical) ? $seo->canonical : url()->current() }}">
-    <meta name="description" content="{{ isset($seo->meta_description) ?? $seo->meta_description }}">
-    <meta name="keywords" content="{{ isset($seo->meta_keyword) ?? $seo->meta_keyword }}">
+    <meta name="description" content="{{ isset($seo->meta_description) ? $seo->meta_description : '' }}">
+    <meta name="keywords" content="{{ isset($seo->meta_keyword) ? $seo->meta_keyword : '' }}">
     @isset( $seo->robots )
         @if( $seo->robots == 0 )
             <meta name="robots" content="noindex" />

@@ -23,7 +23,7 @@
     <div class="popup__content">
 
         <!-- Form -->
-        <form action="{{ route('form.appointment') }}" method="post" class="row ajaxForm">
+        <form action="{{ route('form.appointment') }}" method="post" class="form row ajaxForm">
             @csrf
 
             @isset( $direction )

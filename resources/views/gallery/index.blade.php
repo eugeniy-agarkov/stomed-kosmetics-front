@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('meta')
-    <title>{{ isset($seo->meta_title) ? $seo->meta_title : __( 'Галерея' ) }}</title>
+    <title>{{ isset($seo->meta_title) ? $seo->meta_title : __( 'Фото до и после' ) }}</title>
 @endsection
 
 @section('content')
