@@ -13,7 +13,7 @@ class DirectionCategoryComposer
      */
     public function compose(View $view)
     {
-        return $view->with('directionCategories', DirectionCategory::whereParent()->get());
+        return $view->with('directionCategories', DirectionCategory::whereParent()->whereIsMenu()->get());
     }
 
 }

@@ -138,7 +138,7 @@
                             <!-- End Filter > Col -->
 
                             <!-- Filter > Col -->
-                            <div class="filter__col">
+                            <div class="filter__col @if( $category->id && $category->is_menu == 0 ) hidden @endif">
 
                                 <!-- title -->
                                 <h6 class="filter__col-title">

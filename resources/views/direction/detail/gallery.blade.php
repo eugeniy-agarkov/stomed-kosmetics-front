@@ -17,7 +17,7 @@
 
                         <!-- Title -->
                         <h3 class="headpanel__title">
-                            {{ $direction->category->name }}, {{ __( 'до и после' ) }}
+                            {{ $direction->name }} {{ __( 'фото до и после' ) }}
                         </h3>
                         <!-- End Title -->
 

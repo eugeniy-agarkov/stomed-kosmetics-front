@@ -36,6 +36,32 @@ class SeoComposer
 
             return $view->with('seo', request()->clinic->page);
 
+        }elseif (request()->routeIs('gallery')) {
+
+            return $view->with('seo', (object) [
+                'meta_title' => __( 'Фото до и после' ),
+                'meta_description' => __( 'Фото до и после' ),
+                'meta_keyword' => __( 'Фото до и после' )
+            ]);
+
+        }elseif (request()->routeIs('gallery.show')) {
+
+            if ( isset(request()->direction) )
+            {
+                return $view->with('seo', (object) [
+                    'meta_title' => request()->direction->name . ': ' . __( 'фото до и после' ),
+                    'meta_description' => request()->direction->name . ': ' . __( 'фото до и после' ),
+                    'meta_keyword' => request()->direction->name . ': ' . __( 'фото до и после' ),
+                ]);
+            }else{
+                return $view->with('seo', (object) [
+                    'meta_title' => request()->category->name . ': ' . __( 'фото до и после' ),
+                    'meta_description' => request()->category->name . ': ' . __( 'фото до и после' ),
+                    'meta_keyword' => request()->category->name . ': ' . __( 'фото до и после' ),
+                ]);
+            }
+
+
         }else{
 
             return $view->with('seo', Seo::where('page', \Request::path())->first());

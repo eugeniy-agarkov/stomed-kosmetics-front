@@ -16,4 +16,14 @@ class DirectionCategoryQuery extends Builder
         return $this;
     }
 
+    /**
+     * @param string $status
+     */
+    public function whereIsMenu(): self
+    {
+        $this->where('is_menu', 1);
+
+        return $this;
+    }
+
 }

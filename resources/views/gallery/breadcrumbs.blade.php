@@ -22,13 +22,13 @@
                     @if( request()->routeIs('gallery.show'))
 
                         <li>
-                            <a href="{{ route('gallery') }}">{{ __( 'Галерея' ) }}</a>
+                            <a href="{{ route('gallery') }}">{{ __( 'Галерея: фото до и после' ) }}</a>
                         </li>
 
                         @if( $direction->id )
 
                             <li>
-                                <a href="{{ route('gallery.show', $category) }}">{{ $category->name }}</a>
+                                <a href="{{ route('gallery.show', $category) }}">{{ $category->name }}: {{ __( 'фото до и после' ) }}</a>
                             </li>
 
                             <li>

@@ -117,13 +117,15 @@
 
                                         </li>
 
-                                        <li>
+                                        @if( settings('link_price') )
+                                            <li>
 
-                                            <a href="#">
-                                                {{ __( 'Прайс-лист' ) }}
-                                            </a>
+                                                <a href="{{ settings('link_price') }}" target="_blank">
+                                                    {{ __( 'Прайс-лист' ) }}
+                                                </a>
 
-                                        </li>
+                                            </li>
+                                        @endif
 
                                         <li>
 
@@ -177,29 +179,35 @@
                                     <!-- list -->
                                     <ul class="footer__columns-list">
 
-                                        <li>
+                                        @if( settings('link_nalog') )
+                                            <li>
 
-                                            <a href="#">
-                                                {{ __( 'Налоговый вычет' ) }}
-                                            </a>
+                                                <a href="{{ settings('link_nalog') }}" target="_blank">
+                                                    {{ __( 'Налоговый вычет' ) }}
+                                                </a>
 
-                                        </li>
+                                            </li>
+                                        @endif
 
-                                        <li>
+                                        @if( settings('link_dogovor') )
+                                            <li>
 
-                                            <a href="#">
-                                                {{ __( 'Договор оферты' ) }}
-                                            </a>
+                                                <a href="{{ settings('link_dogovor') }}" target="_blank">
+                                                    {{ __( 'Договор оферты' ) }}
+                                                </a>
 
-                                        </li>
+                                            </li>
+                                        @endif
 
-                                        <li>
+                                        @if( settings('link_pravicy_policy') )
+                                            <li>
 
-                                            <a href="#">
-                                                {{ __( 'Политика конфиденциальности' ) }}
-                                            </a>
+                                                <a href="{{ settings('link_pravicy_policy') }}" target="_blank">
+                                                    {{ __( 'Политика конфиденциальности' ) }}
+                                                </a>
 
-                                        </li>
+                                            </li>
+                                        @endif
 
                                     </ul>
                                     <!-- end list -->

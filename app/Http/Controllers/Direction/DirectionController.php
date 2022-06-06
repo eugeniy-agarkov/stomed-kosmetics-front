@@ -32,13 +32,13 @@ class DirectionController extends Controller
         }else{
 
             $items = $direction
+                ->whereIsMenu()
                 ->whereClinic($request->input('clinic'))
                 ->wherePrice($request->input('price'))
                 ->whereSearch($request->input('search'))
                 ->paginate(6);
 
         }
-
 
         if ( $request->ajax() )
         {

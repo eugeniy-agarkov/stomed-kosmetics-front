@@ -26,7 +26,11 @@ class DirectionQuery extends Builder
     {
 
         if( $clinic )
+        {
             $this->where('clinic_id', $clinic);
+        }else{
+            $this->whereNull('clinic_id');
+        }
 
         return $this;
 
@@ -40,6 +44,21 @@ class DirectionQuery extends Builder
 
 //        if( $search )
 //            $this->where('name', 'LIKE', '%'.$search.'%');
+
+        return $this;
+
+    }
+
+    /**
+     * @param string $status
+     */
+    public function whereIsMenu(): static
+    {
+
+        $this->whereHas('category', function($query)
+        {
+            $query->where('is_menu', 1);
+        });
 
         return $this;
 

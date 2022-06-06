@@ -17,9 +17,9 @@
                         {{ isset($seo->h1) ? $seo->h1 : __( 'Фото до и после' ) }}
                     @else
                         @if( $direction->id )
-                            {{ isset($seo->h1) ? $seo->h1 : $direction->name . ': ' . __( 'Фото до и после' ) }}
+                            {{ isset($seo->h1) ? $seo->h1 : $direction->name . ': ' . __( 'фото до и после' ) }}
                         @else
-                            {{ isset($seo->h1) ? $seo->h1 : $category->name . ': ' . __( 'Фото до и после' ) }}
+                            {{ isset($seo->h1) ? $seo->h1 : $category->name . ': ' . __( 'фото до и после' ) }}
                         @endif
                     @endif
 
