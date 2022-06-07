@@ -62,23 +62,25 @@
 
                                 </li>
 
-                                <li>
+                                @if( $direction->time_spending )
+                                    <li>
 
-                                    <!-- icon -->
-                                    <div>
+                                        <!-- icon -->
+                                        <div>
 
-                                        <img
-                                            src="{{ asset('build/assets/images/icons/o-clock.svg') }}"
-                                            alt="{{ __( 'Время проведения' ) }}"
-                                            title="{{ __( 'Время проведения' ) }}"
-                                        >
+                                            <img
+                                                src="{{ asset('build/assets/images/icons/o-clock.svg') }}"
+                                                alt="{{ __( 'Время проведения' ) }}"
+                                                title="{{ __( 'Время проведения' ) }}"
+                                            >
 
-                                    </div>
-                                    <!-- end icon -->
+                                        </div>
+                                        <!-- end icon -->
 
-                                    <span>{{ __( 'Время проведения' ) }}: {{ $direction->time_spending }}</span>
+                                        <span>{{ __( 'Время проведения' ) }}: {{ $direction->time_spending }}</span>
 
-                                </li>
+                                    </li>
+                                @endif
 
                             </ul>
                             <!-- End List -->
@@ -90,7 +92,7 @@
                                     {{ __( 'Записаться на прием' ) }}
                                 </a>
 
-                                <a href="#" class="btn btn-opacity">
+                                <a href="javascript:;" class="btn btn-opacity scrollSection" data-section=".prices">
                                     {{ __( 'Смотреть цены' ) }}
                                 </a>
 
