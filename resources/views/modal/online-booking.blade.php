@@ -66,32 +66,6 @@
             <!-- end col -->
 
             <!-- col -->
-            <div class="col-sm-12 form-group">
-
-                <input
-                    type="text"
-                    name="date"
-                    placeholder="{{ __( 'Дата приема' ) }}"
-                    class="date"
-                >
-
-            </div>
-            <!-- end col -->
-
-            <!-- col -->
-            <div class="col-sm-12 form-group">
-
-                <input
-                    type="text"
-                    name="time"
-                    placeholder="{{ __( 'Время приема' ) }}"
-                    class="time"
-                >
-
-            </div>
-            <!-- end col -->
-
-            <!-- col -->
             <div class="col-sm-12">
 
                 <button type="submit">
