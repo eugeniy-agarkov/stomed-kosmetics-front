@@ -14,11 +14,11 @@
                 <h1 class="title_page__title">
 
                     @if( request()->routeIs('direction') )
-                        {{ isset($seo->h1) ? $seo->h1 : __( 'Услуги' ) }}
+                        {{ isset($seo->h1) ? $seo->h1 : __( 'Услуги' ) }} {{ request()->has('clinic') ? $clinics->where('id', request()->input('clinic'))->first()->name : '' }}
                     @elseif( request()->routeIs('direction.category') )
-                        {{ isset($seo->h1) ? $seo->h1 : $category->name }}
+                        {{ isset($seo->h1) ? $seo->h1 : $category->name }} {{ request()->has('clinic') ? $clinics->where('id', request()->input('clinic'))->first()->name : '' }}
                     @else
-                        {{ isset($seo->h1) ? $seo->h1 : $category->name . ' ' . $clinic->name }}
+                        {{ isset($seo->h1) ? $seo->h1 : $category->name . ' ' . $clinic->name }} {{ request()->has('clinic') ? $clinics->where('id', request()->input('clinic'))->first()->name : '' }}
                     @endif
 
                 </h1>

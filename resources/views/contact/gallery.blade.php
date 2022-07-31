@@ -19,27 +19,11 @@
                         <!-- Wrapper -->
                         <div class="swiper-wrapper">
 
-                            @if( request()->routeIs('contact.clinic'))
+                            @if( $galleries->count() )
 
-                                @if( $galleries->count() )
+                                @foreach( $galleries as $gallery )
 
-                                    @foreach( $galleries as $gallery )
-
-                                        @include( 'contact.loop.item-gallery', ['gallery' => $gallery] )
-
-                                    @endforeach
-
-                                @endif
-
-                            @else
-
-                                @foreach( $clinics as $clinic )
-
-                                    @php( $gallery = $clinic->images->take(1)->first() )
-
-                                    @if( $gallery )
-                                        @include( 'contact.loop.item-gallery', ['gallery' => $gallery] )
-                                    @endif
+                                    @include( 'contact.loop.item-gallery', ['gallery' => $gallery] )
 
                                 @endforeach
 

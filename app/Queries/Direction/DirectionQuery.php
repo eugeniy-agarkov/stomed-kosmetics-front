@@ -64,4 +64,14 @@ class DirectionQuery extends Builder
 
     }
 
+    /**
+     * @param string $status
+     */
+    public function whereIsTop(): self
+    {
+        $this->where('is_top', 1);
+
+        return $this;
+    }
+
 }

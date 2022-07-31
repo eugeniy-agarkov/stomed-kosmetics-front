@@ -61,11 +61,12 @@ jQuery( function( $ ) {
                         $this.data('current', page)
 
                     },
-                    success     :   function( response ){
+                    success     :   function( response )
+                    {
 
                         $(target).append(response).ready(function () {
 
-                            // Code
+                            $this.data('current', page)
 
                         })
 
@@ -74,7 +75,7 @@ jQuery( function( $ ) {
                         }
 
                     },
-                    url         :   url + s
+                    url         :   url + s + 'page=' + page
                 } );
 
 

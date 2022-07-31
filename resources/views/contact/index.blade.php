@@ -10,13 +10,17 @@
 
     @include( 'contact.map' )
 
-    @include( 'contact.address' )
+    @if( request()->routeIs('contact.clinic'))
 
-    @include( 'contact.faq' )
+        @include( 'contact.address' )
 
-    @include( 'contact.callback' )
+        @include( 'contact.faq' )
 
-    @include( 'contact.gallery' )
+        @include( 'contact.callback' )
+
+        @include( 'contact.gallery' )
+
+    @endif
 
 @endsection
 

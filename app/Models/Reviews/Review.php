@@ -6,6 +6,7 @@ use App\Models\Clinic\Clinic;
 use App\Models\Direction\Direction;
 use App\Models\Doctor\Doctor;
 use App\Queries\Review\ReviewQuery;
+use App\Scopes\Review\ReviewScope;
 use App\Traits\IsActiveTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -39,6 +40,17 @@ class Review extends Model
         'content',
         'type',
     ];
+
+    /**
+     * @return void
+     */
+    protected static function boot(): void
+    {
+
+        parent::boot();
+        static::addGlobalScope(new ReviewScope());
+
+    }
 
     /**
      * @param $query

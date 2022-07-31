@@ -13,15 +13,7 @@
                 <!-- Text -->
                 <div class="contacts__address-text">
 
-                    @if( request()->routeIs('contact.clinic'))
-
-                        {{ $clinic->detail->address }}
-
-                    @else
-
-                        {{ settings('general_address') }}
-
-                    @endif
+                    {{ $clinic->detail->address }}
 
                 </div>
                 <!-- End Text -->

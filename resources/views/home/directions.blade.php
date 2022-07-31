@@ -28,7 +28,11 @@
                                     </h4>
                                     <!-- end title -->
 
-                                    @php( $cats = $category->directions()->take(5)->get() )
+                                    @php( $cats = $category->directions()->whereIsTop()->take(5)->get() )
+                                    @if( $cats->count() == 0 )
+                                        @php( $cats = $category->directions()->take(5)->get() )
+                                    @endif
+
                                     @if( $cats->count() )
 
                                         <!-- list -->

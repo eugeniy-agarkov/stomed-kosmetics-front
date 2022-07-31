@@ -206,7 +206,7 @@
                             </ul>
                             <!-- End Services List -->
 
-                            @if ( $items->hasPages() )
+                            @if ( $items->hasMorePages() )
 
                                 <!-- Pagination -->
                                 <div class="pagination">
@@ -214,7 +214,7 @@
                                     <a
                                         data-target=".services__list"
                                         data-last="{{ $items->lastPage() }}"
-                                        href="{{ url()->current() }}"
+                                        href="{{ url()->full() }}"
                                         class="btn btn-opacity pagination__loadmore loadMore"
                                     >
                                         <svg class="icon left" width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">

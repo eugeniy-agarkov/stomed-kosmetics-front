@@ -24,11 +24,17 @@
                                 <ul class="header__locations">
 
                                     @foreach( $clinics as $clinic )
-                                            <li>
+                                        <li class="@if( request()->has('clinic') && request()->input('clinic') == $clinic->id ) active @endif">
 
-                                            <a href="{{ route('contact.clinic', $clinic) }}">
-                                                <span>{{ __( 'Косметология' ) }}</span> {{ $clinic->name }}
-                                            </a>
+                                            @if( request()->routeIs(['direction.category']) )
+                                                <a href="{{ route('direction.category', ['category' => $category, 'clinic' => $clinic->id]) }}">
+                                                    <span>{{ __( 'Косметология' ) }}</span> {{ $clinic->name }}
+                                                </a>
+                                            @else
+                                                <a href="{{ route('direction', ['clinic' => $clinic->id]) }}">
+                                                    <span>{{ __( 'Косметология' ) }}</span> {{ $clinic->name }}
+                                                </a>
+                                            @endif
 
                                         </li>
                                     @endforeach
@@ -221,7 +227,7 @@
                             <ul class="header__nav">
 
                                 @foreach( $directionCategories as $category )
-                                    <li>
+                                    <li class="@if( request()->routeIs('direction.category') && request()->category->id == $category->id ) active @endif">
 
                                         <a href="{{ route('direction.category', $category) }}">
                                             {{ $category->title_menu }}

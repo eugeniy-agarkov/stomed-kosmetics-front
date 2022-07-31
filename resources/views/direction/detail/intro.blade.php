@@ -40,27 +40,29 @@
                             <!-- List -->
                             <ul class="intro_column__footer-list">
 
-                                <li>
+                                @if( $direction->prices()->count() )
+                                    <li>
 
-                                    <!-- icon -->
-                                    <div class="icon">
+                                        <!-- icon -->
+                                        <div class="icon">
 
-                                        <img
-                                            src="{{ asset('build/assets/images/icons/price.svg') }}"
-                                            alt="{{ __( 'Цена' ) }}"
-                                            title="{{ __( 'Цена' ) }}"
-                                        >
+                                            <img
+                                                src="{{ asset('build/assets/images/icons/price.svg') }}"
+                                                alt="{{ __( 'Цена' ) }}"
+                                                title="{{ __( 'Цена' ) }}"
+                                            >
 
-                                    </div>
-                                    <!-- end icon -->
+                                        </div>
+                                        <!-- end icon -->
 
-                                    @if( $direction->prices()->count() > 1 )
-                                        <span>{{ __( 'Цена от' ) }}: {{ $direction->minPrice() }} руб.</span>
-                                    @elseif( $direction->prices()->count() == 1 )
-                                        <span>{{ __( 'Цена' ) }}: {{ $direction->minPrice() }} руб.</span>
-                                    @endif
+                                        @if( $direction->prices()->count() > 1 )
+                                            <span>{{ __( 'Цена от' ) }}: {{ $direction->minPrice() }} руб.</span>
+                                        @elseif( $direction->prices()->count() == 1 )
+                                            <span>{{ __( 'Цена' ) }}: {{ $direction->minPrice() }} руб.</span>
+                                        @endif
 
-                                </li>
+                                    </li>
+                                @endif
 
                                 @if( $direction->time_spending )
                                     <li>
@@ -92,9 +94,11 @@
                                     {{ __( 'Записаться на прием' ) }}
                                 </a>
 
-                                <a href="javascript:;" class="btn btn-opacity scrollSection" data-section=".prices">
-                                    {{ __( 'Смотреть цены' ) }}
-                                </a>
+                                @if( $direction->prices()->count() )
+                                    <a href="javascript:;" class="btn btn-opacity scrollSection" data-section=".prices">
+                                        {{ __( 'Смотреть цены' ) }}
+                                    </a>
+                                @endif
 
                             </div>
                             <!-- End Btn Group -->

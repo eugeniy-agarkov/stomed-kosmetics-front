@@ -10,68 +10,29 @@
             <!-- col -->
             <div class="col-sm-12">
 
-                @if( request()->routeIs('contact.clinic'))
-
-                    @if( $faqs->count() )
-
-                        <!-- List -->
-                        <ul class="contacts__faq-list accordion">
-
-                            @foreach( $faqs as $faq )
-
-                                <li>
-
-                                    <!-- Link -->
-                                    <a href="javascript:;" class="contacts__faq-list-link accordionLink">
-                                        <span>{{ $faq->question }}</span>
-                                        <i></i>
-                                    </a>
-                                    <!-- End Link -->
-
-                                    <!-- Body -->
-                                    <div class="contacts__faq-list-body accordionBody">
-                                        {!! $faq->answer !!}
-                                    </div>
-                                    <!-- End Body -->
-
-                                </li>
-
-                            @endforeach
-
-                        </ul>
-                        <!-- End List -->
-
-                    @endif
-
-                @else
+                @if( $faqs->count() )
 
                     <!-- List -->
                     <ul class="contacts__faq-list accordion">
 
-                        @foreach( $clinics as $clinic )
+                        @foreach( $faqs as $faq )
 
-                            @php( $faq = $clinic->faq->take(1)->first() )
+                            <li>
 
-                            @if( $faq )
+                                <!-- Link -->
+                                <a href="javascript:;" class="contacts__faq-list-link accordionLink">
+                                    <span>{{ $faq->question }}</span>
+                                    <i></i>
+                                </a>
+                                <!-- End Link -->
 
-                                <li>
+                                <!-- Body -->
+                                <div class="contacts__faq-list-body accordionBody">
+                                    {!! $faq->answer !!}
+                                </div>
+                                <!-- End Body -->
 
-                                    <!-- Link -->
-                                    <a href="javascript:;" class="contacts__faq-list-link accordionLink">
-                                        <span>{{ $faq->question }}</span>
-                                        <i></i>
-                                    </a>
-                                    <!-- End Link -->
-
-                                    <!-- Body -->
-                                    <div class="contacts__faq-list-body accordionBody">
-                                        {!! $faq->answer !!}
-                                    </div>
-                                    <!-- End Body -->
-
-                                </li>
-
-                            @endif
+                            </li>
 
                         @endforeach
 
