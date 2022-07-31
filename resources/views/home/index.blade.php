@@ -18,7 +18,7 @@
 
     @include('partials.news-last')
 
-    @include( 'partials.video' )
+{{--    @include( 'partials.video' )--}}
 
     @include('partials.contacts')
 

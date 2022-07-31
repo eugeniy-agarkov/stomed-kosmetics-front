@@ -3,6 +3,7 @@
 namespace App\Models\Sales;
 
 use App\Queries\Sale\SaleQuery;
+use App\Scopes\IsActiveScope;
 use App\Scopes\Sale\SaleScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -68,6 +69,7 @@ class Sale extends Model
     public function newEloquentBuilder($query): SaleQuery
     {
 
+        static::addGlobalScope(new IsActiveScope());
         return new SaleQuery($query);
 
     }
