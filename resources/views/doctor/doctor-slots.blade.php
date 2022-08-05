@@ -28,13 +28,4 @@
 
     </ul>
     <!-- End List -->
-
-@else
-
-    <!-- Empty -->
-    <div class="doctors__grid-order-time-empty">
-        {{ __( 'Свободного времени нет.' ) }}
-    </div>
-    <!-- End Empty -->
-
 @endif

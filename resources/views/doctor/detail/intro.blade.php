@@ -161,7 +161,7 @@
                             <!-- Btn Group -->
                             <div class="intro_column__footer-btn">
 
-                                <a href="#" class="btn btn-blue btn-not-rounded">
+                                <a href="#slot-doctor-mobile-{{ $doctor->id }}" class="btn btn-blue btn-not-rounded" data-fancybox>
                                     {{ __( 'Оставить заявку' ) }}
                                 </a>
 
@@ -196,7 +196,7 @@
                             @endif
 
                             <!-- Form -->
-                            <div class="doctors__order-form">
+                            <div class="doctors__order-form" id="slot-doctor-mobile-{{ $doctor->id }}">
 
                                 <!-- Title -->
                                 <h3 class="doctors__order-form-title">

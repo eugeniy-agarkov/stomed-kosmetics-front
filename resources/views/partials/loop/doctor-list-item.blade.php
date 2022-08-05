@@ -5,7 +5,7 @@
 
         @if ( Storage::disk('public')->exists('thumbnail/' . $item->image) )
             <!-- Photo -->
-            <div class="doctors__grid-item-photo">
+            <a href="{{ route('doctor.show', $item) }}" class="doctors__grid-item-photo">
 
                 <img
                     src="{{ Storage::url('thumbnail/' . $item->image) }}"
@@ -14,7 +14,7 @@
                     class="img-responsive"
                 >
 
-            </div>
+            </a>
             <!-- End Photo -->
         @endif
 
@@ -45,7 +45,7 @@
 
                     <!-- Title -->
                     <h3 class="doctors__grid-title">
-                        {{ $item->name }}
+                        <a href="{{ route('doctor.show', $item) }}">{{ $item->name }}</a>
                     </h3>
                     <!-- End Title -->
 
@@ -88,7 +88,7 @@
                     <!-- End Link -->
 
                     <!-- Link Mobile -->
-                    <a href="#" class="doctors__grid-order-mobile">
+                    <a href="#slot-doctor-mobile-{{ $item->id }}" class="doctors__grid-order-mobile" data-fancybox>
                         {{ __( 'Оставить заявку' ) }}
                     </a>
                     <!-- End Link Mobile -->
@@ -97,7 +97,7 @@
                 <!-- End Row > Left -->
 
                 <!-- Row > Right -->
-                <div class="doctors__grid-item-content-row-right">
+                <div class="doctors__grid-item-content-row-right" id="slot-doctor-mobile-{{ $item->id }}">
 
                     @include( 'doctor.forms.booking-time' )
 

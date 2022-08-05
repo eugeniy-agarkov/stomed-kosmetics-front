@@ -22,7 +22,10 @@ class SeoComposer
 
         }elseif (request()->routeIs('direction.detail')) {
 
-            return $view->with('seo', request()->direction->page);
+            if( isset(request()->direction->page) )
+            {
+                return $view->with('seo', request()->direction->page);
+            }
 
         }elseif (request()->routeIs('direction.category')) {
 

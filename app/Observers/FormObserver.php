@@ -6,6 +6,7 @@ use App\Enums\FormEnum;
 use App\Mail\Admin\FormMail;
 use App\Models\Form;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class FormObserver
 {
@@ -52,10 +53,20 @@ class FormObserver
 
         }
 
-        dispatch(function () use ($form) {
-            Mail::to(settings('email_appointments'))
-                ->send(new FormMail($form));
-        })->afterResponse();
+        $emails = Str::of(settings('email_appointments'))->explode(',');
+
+        if( $emails )
+        {
+            dispatch(function () use ($form, $emails) {
+
+                foreach ( $emails as $email )
+                {
+                    Mail::to($email)->send(new FormMail($form));
+                }
+
+            })->afterResponse();
+        }
+
 
     }
 

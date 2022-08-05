@@ -22,25 +22,28 @@
         <!-- Header -->
         <div class="doctors__grid-order-header">
 
-            <!-- Date -->
-            <div class="doctors__grid-order-date">
-                <span>{{ __( 'Дата' ) }}:</span>
-                <input
-                    type="text"
-                    value="{{ now()->format('d/m/Y') }}"
-                    class="doctorOrderDate"
-                    name="date"
-                    data-doctor="{{ $item->id }}"
-                >
-            </div>
-            <!-- End Date -->
+            @php( $dates = $item->getSlotsDate($item->clinics->first()->code) )
 
-            @if( $item->clinics()->count() )
+            @if( $dates->count() )
+                <!-- Date -->
+                <div class="doctors__grid-order-date">
+                    <span>{{ __( 'Дата' ) }}:</span>
+
+                    <div class="doctorOrderDateAjax">
+
+                        @include( 'partials.doctor.slots-date', [ 'item' => $item, 'dates' => $dates ] )
+
+                    </div>
+
+                </div>
+                <!-- End Date -->
+            @endif
+
+            @if( $dates->count() && $item->clinics()->count() )
 
                 <!-- Locations -->
                 <div class="doctors__grid-order-locations">
                     <span>{{ __( 'Клиника' ) }}:</span>
-
 
                     <input
                         type="text"
@@ -77,7 +80,16 @@
         <div class="doctors__grid-order-content">
 
             <div class="ajaxSlots">
-                @include( 'doctor.doctor-slots', [ 'slots' => $item->getSlots(now()->format('Y-m-d'), $item->clinics->first()->code) ] )
+
+                @if( $dates->count() && $item->clinics()->count() )
+                    @include( 'doctor.doctor-slots', [ 'slots' => $item->getSlots(\Illuminate\Support\Carbon::parse($dates->first()[0]->from)->format('Y-m-d'), $item->clinics->first()->code) ] )
+                @else
+                    <!-- Empty -->
+                    <div class="doctors__grid-order-time-empty">
+                        {{ __( 'Свободного времени нет.' ) }}
+                    </div>
+                    <!-- End Empty -->
+                @endif
             </div>
 
             <!-- Form -->

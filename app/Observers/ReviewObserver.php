@@ -3,9 +3,11 @@
 namespace App\Observers;
 
 use App\Enums\ReviewEnum;
+use App\Mail\Admin\FormMail;
 use App\Mail\Admin\ReviewMail;
 use App\Models\Reviews\Review;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class ReviewObserver
 {
@@ -32,9 +34,16 @@ class ReviewObserver
     public function created(Review $review)
     {
 
-        dispatch(function () use ($review) {
-            Mail::to(settings('email_reviews'))
-                ->send(new ReviewMail($review));
+        $emails = Str::of(settings('email_appointments'))->explode(',');
+
+        dispatch(function () use ($review, $emails)
+        {
+
+            foreach ( $emails as $email )
+            {
+                Mail::to($email)->send(new ReviewMail($review));
+            }
+
         })->afterResponse();
 
     }

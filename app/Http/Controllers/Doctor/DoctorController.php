@@ -118,13 +118,14 @@ class DoctorController extends Controller
     public function slots(Request $request, Doctor $doctor)
     {
 
-        $date = Carbon::createFromFormat('d.m.Y', $request->input('date'))->format('Y-m-d');
+        $date = Carbon::createFromFormat('Y-m-d', $request->input('date'))->format('Y-m-d');
         $clinic = Clinic::find($request->input('clinic'));
         $slots = $doctor->getSlots($date, $clinic->code);
 
         return response()->json([
             'status' => 'success',
             'html' => view('doctor.doctor-slots', compact('slots'))->render(),
+            'dates' => view('partials.doctor.slots-date', [ 'item' => $doctor, 'dates' => $doctor->getSlotsDate($clinic->code) ])->render(),
         ], 200);
 
     }

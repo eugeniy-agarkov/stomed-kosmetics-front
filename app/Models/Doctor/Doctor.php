@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Lang;
 
 class Doctor extends Model
@@ -162,6 +163,23 @@ class Doctor extends Model
         }
 
         return array_key_exists($date, $dates) ? $dates[$date] : [];
+
+    }
+
+    /**
+     * @return array
+     */
+    public function getSlotsDate($clinic)
+    {
+
+        $items = self::slots()->where('clinicId', $clinic)->get()->groupBy(function ($val)
+        {
+
+            return Carbon::parse($val->from)->format('Y-m-d');
+
+        });
+
+        return $items;
 
     }
 

@@ -69,7 +69,6 @@ class Sale extends Model
     public function newEloquentBuilder($query): SaleQuery
     {
 
-        static::addGlobalScope(new IsActiveScope());
         return new SaleQuery($query);
 
     }
@@ -81,6 +80,7 @@ class Sale extends Model
     {
 
         parent::boot();
+        static::addGlobalScope(new IsActiveScope());
         static::addGlobalScope(new SaleScope());
 
     }
