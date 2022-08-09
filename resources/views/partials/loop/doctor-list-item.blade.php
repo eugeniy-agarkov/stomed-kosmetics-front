@@ -89,7 +89,7 @@
 
                     <!-- Link Mobile -->
                     <a href="#slot-doctor-mobile-{{ $item->id }}" class="doctors__grid-order-mobile" data-fancybox>
-                        {{ __( 'Оставить заявку' ) }}
+                        {{ __( 'Записаться' ) }}
                     </a>
                     <!-- End Link Mobile -->
 

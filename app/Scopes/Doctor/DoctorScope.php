@@ -20,6 +20,8 @@ class DoctorScope implements Scope
     public function apply(Builder $builder, Model $model)
     {
 
+        $builder->orderBy('order');
+
         if( !empty( Request::input('order') ) )
         {
             $builder->orderBy('id', Request::input('order'));
