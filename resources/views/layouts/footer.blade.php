@@ -44,20 +44,6 @@
 
                                 <li>
 
-                                    <a href="https://twitter.com/stomedmed" target="_blank" rel="nofollow">
-
-                                        <img
-                                            src="{{ asset('build/assets/images/icons/twitter.svg') }}"
-                                            alt="{{ __( 'Twitter' ) }}"
-                                            title="{{ __( 'Twitter' ) }}"
-                                        >
-
-                                    </a>
-
-                                </li>
-
-                                <li>
-
                                     <a href="https://www.youtube.com/channel/UCBuC95xMFewxQb4jiwSnFgA/videos?view_as=subscriber" target="_blank" rel="nofollow">
 
                                         <img

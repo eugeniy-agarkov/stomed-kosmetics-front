@@ -48,31 +48,35 @@
             </div>
             <!-- end excerpt -->
 
-            @if( \Illuminate\Support\Str::length($item->content) > 50 )
-            <!-- collapse -->
-                <a
-                    href="javascript:;"
-                    class="reviews__listing-excerpt-collapse reviewsCollapseLink"
-                    data-text-collapse="{{ __( 'Развернуть' ) }}"
-                    data-text-collapsed="{{ __( 'Свернуть' ) }}"
-                >
-                    {{ __( 'Развернуть' ) }}
-                </a>
-                <!-- end collapse -->
-            @endif
-
-            @if( $item->original )
-                <!-- original -->
-                <a href="{{ Storage::url('images/' . $item->original) }}" class="reviews__listing-original" target="_blank">
-                    <img
-                        src="{{ asset('build/assets/images/icons/writing.svg') }}"
-                        alt="{{ __( 'Оригинал отзыва' ) }}"
-                        title="{{ __( 'Оригинал отзыва' ) }}"
+            <!-- Footer -->
+            <div class="reviews__listing-row-right-footer">
+                @if( \Illuminate\Support\Str::length($item->content) > 50 )
+                    <!-- collapse -->
+                    <a
+                        href="javascript:;"
+                        class="reviews__listing-excerpt-collapse reviewsCollapseLink"
+                        data-text-collapse="{{ __( 'Развернуть' ) }}"
+                        data-text-collapsed="{{ __( 'Свернуть' ) }}"
                     >
-                    <span>{{ __( 'Смотреть оригинал отзыва' ) }}</span>
-                </a>
-                <!-- end original -->
-            @endif
+                        {{ __( 'Развернуть' ) }}
+                    </a>
+                    <!-- end collapse -->
+                @endif
+
+                @if( $item->original )
+                    <!-- original -->
+                    <a href="{{ Storage::url('images/' . $item->original) }}" class="reviews__listing-original" target="_blank">
+                        <img
+                            src="{{ asset('build/assets/images/icons/writing.svg') }}"
+                            alt="{{ __( 'Оригинал отзыва' ) }}"
+                            title="{{ __( 'Оригинал отзыва' ) }}"
+                        >
+                        <span>{{ __( 'Смотреть оригинал отзыва' ) }}</span>
+                    </a>
+                    <!-- end original -->
+                @endif
+            </div>
+            <!-- End Footer -->
 
         </div>
         <!-- End Row > Right -->
