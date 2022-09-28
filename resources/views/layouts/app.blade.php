@@ -48,7 +48,7 @@
 
     @stack('style')
 
-    {{ settings('counters') }}
+    {!! settings('counters') !!}
 
 </head>
 <body>

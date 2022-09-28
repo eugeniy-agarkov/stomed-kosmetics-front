@@ -1,2 +1,13 @@
+User-agent: Yandex
+Disallow: *?
+Disallow: *.pdf
+Disallow: *page?*
+Disallow: *search?*
+Sitemap: https://stolicagem.ru/sitemap.xml
+
 User-agent: *
-Disallow:
+Disallow: *?
+Disallow: *.pdf
+Disallow: *page?*
+Disallow: *search?*
+Sitemap: https://stolicagem.ru/sitemap.xml

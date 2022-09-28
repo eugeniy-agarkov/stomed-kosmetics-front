@@ -98,4 +98,6 @@ Route::group(
         }
     );
 
+    Route::get('/sitemap.xml', 'SitemapController@index')->name('sitemap');
+
 });
